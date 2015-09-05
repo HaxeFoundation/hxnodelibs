@@ -1,0 +1,14 @@
+{
+    "name": "hxnodelibs",
+    "url": "https://github.com/HaxeFoundation/hxnodelibs",
+    "description": "Extern definitions for common node.js npm libraries.",
+    "license": "MIT",
+    "version": "0.1.0",
+    "releasenote": "Initial Release for node.js 0.12",
+    "contributors": ["nadako","eduardo-costa"],
+    "tags": ["js", "nodejs", "mongodb", "express"],
+	"dependencies": 
+	{
+		"hxnodejs": ""    
+	}
+}
