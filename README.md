@@ -6,10 +6,10 @@
 
 Extern type definitions for the most common Node.JS Libraries like:
 
-	* `mongodb`
-	* `express`
-	* `multiparty`
-	* `nodewebkit`
+- `mongodb`
+- `express`
+- `multiparty`
+- `nodewebkit`
 
 Haxe-generated API documentation is available at []
 
@@ -17,11 +17,11 @@ Original node.js documentation can be found at http://nodejs.org/api/index.html.
 
 ## Features
 
- * TBD
+ - TBD
 
 ## Example
 
- * TBD
+ - TBD
 
 ## Status
 
