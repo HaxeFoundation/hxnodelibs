@@ -98,12 +98,14 @@ typedef Mount = {
 
 typedef CreateContainerHostConfig = {
 	@:optional var Binds :Array<String>;
+	@:optional var Links :Array<String>;
 
 }
 
 typedef CreateContainerOptions = {
 	var Image :String;
 	@:optional var Cmd :Array<String>;
+	@:optional var Env :Array<String>;
 	@:optional var name :String;
 	@:optional var WorkingDir :String;
 	@:optional var Mounts :Array<Mount>;
