@@ -26,6 +26,11 @@ extern class Command
 
 	public function alias(s :String) :Command;
 
+	@:overload(function(f :Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Void) :Command {})
+	@:overload(function(f :Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Void) :Command {})
+	@:overload(function(f :Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Void) :Command {})
+	@:overload(function(f :Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Void) :Command {})
+	@:overload(function(f :Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Void) :Command {})
 	@:overload(function(f :Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Void) :Command {})
 	@:overload(function(f :Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Void) :Command {})
 	@:overload(function(f :Dynamic->Dynamic->Dynamic->Dynamic->Dynamic->Void) :Command {})
