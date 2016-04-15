@@ -20,7 +20,7 @@ typedef Callback<T> = Callback1<T>;
 typedef SearchOptions = {
 	@:optional var recursive :Bool;
 	@:optional var prependDir :Bool;
-	@:optional var filter :Dynamic;
+	@:optional var filter :String->Stats->Bool;
 	@:optional var map :Dynamic;
 	@:optional var sort :Dynamic;
 }
