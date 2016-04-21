@@ -96,10 +96,29 @@ typedef Mount = {
 	@:optional var RW: Bool;
 }
 
+@:enum //https://docs.docker.com/engine/admin/logging/overview/
+abstract DockerLoggingDriver(String) {
+	var none = "none";
+	var jsonfile = "json-file";
+	var syslog = "syslog";
+	var journald = "journald";
+	var gelf = "gelf";
+	var fluentd = "fluentd";
+	var awslogs = "awslogs";
+	var splunk = "splunk";
+	var etwlogs = "etwlogs";
+	var gcplogs = "gcplogs";
+}
+
+typedef CreateContainerHostConfigLogConfig = {
+	var Type: DockerLoggingDriver;
+	var Config: Dynamic;
+}
+
 typedef CreateContainerHostConfig = {
 	@:optional var Binds :Array<String>;
 	@:optional var Links :Array<String>;
-
+	@:optional var LogConfig :CreateContainerHostConfigLogConfig;
 }
 
 typedef CreateContainerOptions = {
@@ -120,7 +139,6 @@ typedef CreateContainerOptions = {
 	@:optional var User :String;
 	@:optional var ExposedPorts :Dynamic;
 	@:optional var HostConfig :CreateContainerHostConfig;
-
 	@:optional var Volumes :Dynamic;
 }
 
