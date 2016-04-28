@@ -13,11 +13,11 @@ import js.Node;
 
 @:enum
 abstract DockerMachineStatus(String) {
-  var Created = "Created";
-  var Running = "Running";
-  var Restarting = "Restarting";
-  var Paused = "Paused";
-  var Exited = "Exited";
+  var Created = "created";
+  var Running = "running";
+  var Restarting = "restarting";
+  var Paused = "paused";
+  var Exited = "exited";
 }
 
 typedef DockerContainerId=String;
