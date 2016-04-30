@@ -1,11 +1,14 @@
 package js.npm;
 
+import haxe.extern.Rest;
+
 typedef Logger = {
-	function debug(arg1 :Dynamic, ?arg2 :Dynamic, ?arg3 :Dynamic, ?arg4 :Dynamic, ?arg5 :Dynamic) :Void;
-	function info(arg1 :Dynamic, ?arg2 :Dynamic, ?arg3 :Dynamic, ?arg4 :Dynamic, ?arg5 :Dynamic) :Void;
-	function warn(arg1 :Dynamic, ?arg2 :Dynamic, ?arg3 :Dynamic, ?arg4 :Dynamic, ?arg5 :Dynamic) :Void;
-	function error(arg1 :Dynamic, ?arg2 :Dynamic, ?arg3 :Dynamic, ?arg4 :Dynamic, ?arg5 :Dynamic) :Void;
-	function fatal(arg1 :Dynamic, ?arg2 :Dynamic, ?arg3 :Dynamic, ?arg4 :Dynamic, ?arg5 :Dynamic) :Void;
+	function trace(args :Rest<Dynamic>) :Void;
+	function debug(args :Rest<Dynamic>) :Void;
+	function info(args :Rest<Dynamic>) :Void;
+	function warn(args :Rest<Dynamic>) :Void;
+	function error(args :Rest<Dynamic>) :Void;
+	function fatal(args :Rest<Dynamic>) :Void;
 	function child(fields :Dynamic) :Logger;
 }
 
