@@ -241,9 +241,16 @@ typedef ResponseStreamObject = {
 	@:optional var errorDetail :{code: Int, message: String};
 }
 
+typedef DockerModem = {
+	@:optional var host :String;
+	@:optional var socketPath :String;
+}
+
 @:jsRequire("dockerode")
 extern class Docker extends js.node.events.EventEmitter<Dynamic>
 {
+	public var modem :DockerModem;
+
 	public function new(opts :ConstructorOpts):Void;
 
 	@:overload(function(options :Dynamic, cb :Error->Array<ImageData>->Void):Void {})
@@ -273,12 +280,18 @@ extern class Docker extends js.node.events.EventEmitter<Dynamic>
 	public function pull(image :String, ?opts :PullImageOptions, cb: Null<Error>->Null<IReadable>->Void, ?auth :Bool) :Void;
 }
 
+typedef DockerImageTagOptions = {
+	var repo :String;
+	var tag :String;
+	@:optional var force :Bool;
+}
+
 extern class DockerImage extends js.node.events.EventEmitter<Dynamic>
 {
 	public var name :String;
 	public function inspect(cb :Error->Dynamic->Void) :Void;
 	public function history(cb :Error->Dynamic->Void) :Void;
-	public function tag(options :Dynamic, cb :Error->Dynamic->Void) :Void;
+	public function tag(options :DockerImageTagOptions, cb :Error->Dynamic->Void) :Void;
 	public function remove(options :Dynamic, cb :Error->Dynamic->Void) :Void;
 	public function push(options :{?tag :String}, cb :Error->Dynamic->Void, ?auth :Dynamic) :Void;
 }
