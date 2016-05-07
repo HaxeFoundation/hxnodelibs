@@ -244,6 +244,7 @@ typedef ResponseStreamObject = {
 typedef DockerModem = {
 	@:optional var host :String;
 	@:optional var socketPath :String;
+	@:optional var followProgress :IReadable->(Null<Error>->Array<Dynamic>->Void)->(Dynamic->Void)->Void;
 }
 
 @:jsRequire("dockerode")
@@ -277,7 +278,8 @@ extern class Docker extends js.node.events.EventEmitter<Dynamic>
 	@:overload(function(image :String, cmd :Array<String>, stream :IWritable, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
 	public function run(image :String, cmd :Array<String>, ?streams :Array<IWritable>, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void) :Void;
 
-	public function pull(image :String, ?opts :PullImageOptions, cb: Null<Error>->Null<IReadable>->Void, ?auth :Bool) :Void;
+	@:overload(function(image :String, cb: Null<Error>->Null<IReadable>->Void):Void {})
+	public function pull(image :String, opts :PullImageOptions, cb: Null<Error>->Null<IReadable>->Void) :Void;
 }
 
 typedef DockerImageTagOptions = {
