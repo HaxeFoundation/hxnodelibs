@@ -6,6 +6,7 @@ import haxe.extern.Rest;
 extern class Commander
 {
 	public var args :Array<String>;
+	public var commands :Array<Command>;
 
 	public function version (s :String) :Commander;
 	public function command (s :String, ?description :String, ?options :Dynamic) :Command;
@@ -17,6 +18,7 @@ extern class Commander
 
 extern class Command
 {
+	public var _name :String;
 	public function description(s :String) :Command;
 
 	@:overload(function (flags :String, description :String, coercion :Dynamic->Dynamic->Dynamic, defaultValue :Dynamic) :Command {})
@@ -40,4 +42,8 @@ extern class Command
 	public function action(f :Dynamic->Void) :Command;
 
 	public function on(arg :String, f :Void->Void) :Command;
+
+	public function addImplicitHelpCommand() :Void;
+	public function optionHelp() :String;
+	public function helpInformation() :String;
 }
