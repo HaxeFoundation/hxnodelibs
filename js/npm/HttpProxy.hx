@@ -1,6 +1,6 @@
 package js.npm;
 
-import js.node.Http;
+import js.node.http.*;
 
 typedef ProxyServerOptions = {
 	@:optional var target :String;
@@ -20,14 +20,14 @@ typedef ProxyServerOptions = {
 }
 
 @:jsRequire('http-proxy')
-extern class HttpProxy extends js.node.events.EventEmitter
+extern class HttpProxy extends js.node.events.EventEmitter<Dynamic>
 {
 	public static function createProxyServer(?options :ProxyServerOptions) :Proxy;
 }
 
-extern class Proxy extends js.node.events.EventEmitter
+extern class Proxy extends js.node.events.EventEmitter<Dynamic>
 {
 	public function close(?cb :Void->Void) :Void;
 	public function listen(port :Int) :Void;
-	public function web(req :HttpServerReq, res:HttpClientResp, ?options :Dynamic) :Void;
+	public function web(req :IncomingMessage, res:ServerResponse, ?options :Dynamic) :Void;
 }
