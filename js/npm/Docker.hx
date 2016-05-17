@@ -167,6 +167,7 @@ typedef PullImageOptions = {
 	@:optional var repo :String;
 	@:optional var tag :String;
 	@:optional var registry :String;
+	@:optional var authconfig :Dynamic;
 }
 
 typedef LogsOptions = {
