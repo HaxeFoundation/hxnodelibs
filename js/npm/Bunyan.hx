@@ -15,5 +15,12 @@ typedef BunyanLogger = {
 @:jsRequire("bunyan")
 extern class Bunyan extends js.node.events.EventEmitter<Dynamic>
 {
+	public static var TRACE :Int;
+	public static var DEBUG :Int;
+	public static var INFO :Int;
+	public static var WARN :Int;
+	public static var ERROR :Int;
+	public static var FATAL :Int;
+
 	public static function createLogger(args :Dynamic) :BunyanLogger;
 }

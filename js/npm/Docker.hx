@@ -62,6 +62,7 @@ typedef ContainerData = {
 	var SizeRw :Int;
 	var SizeRootFs :Int;
 	var Labels :Array<String>;
+	var Names :Array<String>;
 	var Status :DockerMachineStatus;
 }
 
