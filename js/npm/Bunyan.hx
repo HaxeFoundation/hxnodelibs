@@ -10,6 +10,8 @@ typedef BunyanLogger = {
 	function error(args :Rest<Dynamic>) :Void;
 	function fatal(args :Rest<Dynamic>) :Void;
 	function child(fields :Dynamic) :BunyanLogger;
+	function level(?newLevel :Int) :Int;
+	function levels() :Array<Int>;
 }
 
 @:jsRequire("bunyan")
