@@ -1,5 +1,6 @@
 package js.npm.docker;
 
+import js.node.events.EventEmitter;
 import js.node.stream.Readable;
 import js.node.stream.Writable;
 import js.Error;
@@ -22,7 +23,7 @@ abstract DockerMachineStatus(String) {
 
 typedef DockerContainerId=String;
 
-typedef ConstructorOpts = {
+typedef DockerConnectionOpts = {
 	//These
 	@:optional var protocol :String;
 	@:optional var host :String;
@@ -32,6 +33,10 @@ typedef ConstructorOpts = {
 	@:optional var key :String;
 	//or this
 	@:optional var socketPath :String;
+	//Modem options
+	@:optional var timeout :Int;
+	@:optional var version :String;
+	@:optional var checkServerIdentity :Bool;
 }
 
 typedef ImageId=String;
@@ -56,6 +61,7 @@ typedef PortInfo = {
 typedef ContainerData = {
 	var Id :DockerContainerId;
 	var Image :String;
+	var ImageId :String;
 	var Command :String;
 	var Created :Float;
 	var Ports :Array<PortInfo>;
@@ -63,7 +69,11 @@ typedef ContainerData = {
 	var SizeRootFs :Int;
 	var Labels :Array<String>;
 	var Names :Array<String>;
+	var State :String;
 	var Status :DockerMachineStatus;
+	var HostConfig :{NetworkMode:String};
+	var NetworkSettings :{Networks:Dynamic};
+	var Mounts :Array<Dynamic>;
 }
 
 typedef ListContainerOptions = {
@@ -120,6 +130,8 @@ typedef CreateContainerHostConfig = {
 	@:optional var Binds :Array<String>;
 	@:optional var Links :Array<String>;
 	@:optional var LogConfig :CreateContainerHostConfigLogConfig;
+	@:optional var NetworkMode :String;
+	@:optional var PortBindings :Dynamic;
 }
 
 typedef CreateContainerOptions = {
@@ -130,7 +142,7 @@ typedef CreateContainerOptions = {
 	@:optional var WorkingDir :String;
 	@:optional var Mounts :Array<Mount>;
 	@:optional var Labels :Dynamic;
-	@:optional var Entrypoint :String;
+	@:optional var Entrypoint :Array<String>;
 	@:optional var Tty :Bool;
 	@:optional var AttachStdin :Bool;
 	@:optional var AttachStdout :Bool;
@@ -249,12 +261,53 @@ typedef DockerModem = {
 	@:optional var followProgress :IReadable->(Null<Error>->Array<Dynamic>->Void)->(Dynamic->Void)->Void;
 }
 
+/**
+ * Basic abstracts like this keep types compile-checked even if they
+ * have the same underlying type (in this case strings).
+ */
+abstract DockerVolumeName(String) to String from String
+{
+	public function new (s)
+		this = s;
+}
+
+typedef CreateVolumeOpts = {
+	@:optional var Name :DockerVolumeName;
+	@:optional var Driver :String;
+	@:optional var DriverOpts :Dynamic;
+	@:optional var Labels :Dynamic;
+}
+
+/**
+ * From the /events API
+ */
+@:enum
+abstract EventStreamItemStatus(String) {
+  var kill = "kill";
+  var die = "die";
+  var destroy = "destroy";
+  var create = "create";
+  var stop = "stop";
+  var start = "start";
+}
+
+typedef EventStreamItem = {
+	@:optional var status :EventStreamItemStatus;
+	@:optional var id :DockerContainerId;
+	@:optional var from :String;
+	@:optional var Type :String;
+	@:optional var Action :String;
+	@:optional var Actor :Dynamic;
+	var time :Int;
+	var timeNano :Float;
+}
+
 @:jsRequire("dockerode")
 extern class Docker extends js.node.events.EventEmitter<Dynamic>
 {
 	public var modem :DockerModem;
 
-	public function new(opts :ConstructorOpts):Void;
+	public function new(opts :DockerConnectionOpts):Void;
 
 	@:overload(function(options :Dynamic, cb :Error->Array<ImageData>->Void):Void {})
 	public function listImages(cb :Error->Array<ImageData>->Void) :Void;
@@ -275,19 +328,31 @@ extern class Docker extends js.node.events.EventEmitter<Dynamic>
 	public function getImage(name :String) :DockerImage;
 	public function createImage(?auth :Dynamic, opts :CreateImageOptions, cb:Error->IReadable->Void) :Void;
 
-	@:overload(function(image :String, cmd :String, ?streams :Array<IWritable>, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
-	@:overload(function(image :String, cmd :String, stream :IWritable, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
-	@:overload(function(image :String, cmd :Array<String>, stream :IWritable, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
-	public function run(image :String, cmd :Array<String>, ?streams :Array<IWritable>, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void) :Void;
+	@:overload(function(image :String, cmd :String, ?streams :Array<IWritable>, ?createOptions :CreateContainerOptions, ?startOptions:StartContainerOptions, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
+	@:overload(function(image :String, cmd :String, stream :IWritable, ?createOptions :CreateContainerOptions, ?startOptions:StartContainerOptions, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
+	@:overload(function(image :String, cmd :Array<String>, stream :IWritable, ?createOptions :CreateContainerOptions, ?startOptions:StartContainerOptions, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
+	public function run(image :String, cmd :Array<String>, ?streams :Array<IWritable>, ?createOptions :CreateContainerOptions, ?startOptions:StartContainerOptions, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void) :EventEmitter<Dynamic>;
 
 	@:overload(function(image :String, cb: Null<Error>->Null<IReadable>->Void):Void {})
 	public function pull(image :String, opts :PullImageOptions, cb: Null<Error>->Null<IReadable>->Void) :Void;
+
+	//Volumes
+	public function createVolume(opts :CreateVolumeOpts, cb :Null<Error>->Void) :Void;
+	public function listVolumes(opts :Dynamic, cb :Null<Error>->Dynamic->Void) :Void;
+	public function getVolume(name :DockerVolumeName) :DockerVolume;
 }
 
 typedef DockerImageTagOptions = {
 	var repo :String;
 	var tag :String;
 	@:optional var force :Bool;
+}
+
+extern class DockerVolume extends js.node.events.EventEmitter<Dynamic>
+{
+	public var name :String;
+	public function inspect(cb :Error->Dynamic->Void) :Void;
+	public function remove(cb :Null<Error>->Void) :Void;
 }
 
 extern class DockerImage extends js.node.events.EventEmitter<Dynamic>
