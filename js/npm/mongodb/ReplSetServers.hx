@@ -1,5 +1,5 @@
 package js.npm.mongodb;
-import js.node.http.HTTPServer;
+import js.node.http.Server as HTTPServer;
 import js.npm.mongodb.MongoOption.MongoReplSetOption;
 import js.npm.mongodb.MongoOption.MongoServerOption;
 
@@ -16,7 +16,7 @@ extern class ReplSetServers
 	 */
 	@:overload(function(p_list:Array<HTTPServer>):Void{})
 	function new(p_list : Array<HTTPServer>,p_option:MongoReplSetOption);
-	
+
 	/**
 	 * Creates a new server for the <code>replset</code> based on <code>host</code>.
 	 * @param	p_host
