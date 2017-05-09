@@ -4,10 +4,14 @@ package js.npm.tarstream;
  * https://www.npmjs.com/package/tar-stream
  */
 
+import haxe.extern.EitherType;
+
 import js.Error;
+import js.node.Buffer;
 import js.node.events.EventEmitter.Event;
 import js.node.stream.Readable;
 import js.node.stream.Writable;
+import js.node.stream.Duplex;
 
 @:enum
 abstract TarPackEntryType(String) {
@@ -45,12 +49,12 @@ typedef TarPackHeader = {
 extern class TarStream
 {
 	public static function pack() :TarPack;
-	public static function extract() :IWritable;
+	public static function extract() :Duplex<Dynamic>;
 }
 
 extern class TarPack extends Readable<Dynamic>
 {
 	@:overload(function(opts :TarPackHeader, cb :Null<Error>->Void):IWritable {})
-	public function entry(opts :TarPackHeader, val :String) :Void;
+	public function entry(opts :TarPackHeader, val :EitherType<String,Buffer>) :Void;
 	public function finalize() :Void;
 }

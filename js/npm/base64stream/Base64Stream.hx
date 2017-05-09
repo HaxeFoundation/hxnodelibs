@@ -1,4 +1,4 @@
-package js.npm.Base64Stream;
+package js.npm.base64stream;
 
 import js.node.stream.Duplex;
 

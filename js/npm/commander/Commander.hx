@@ -6,6 +6,7 @@ import haxe.extern.Rest;
 extern class Commander
 {
 	public var args :Array<String>;
+	public var rawArgs :Array<String>;
 	public var commands :Array<Command>;
 
 	public function version (s :String) :Commander;
@@ -19,6 +20,7 @@ extern class Commander
 extern class Command
 {
 	public var _name :String;
+	public var parent :Commander;
 	public function description(s :String) :Command;
 
 	@:overload(function (flags :String, description :String, coercion :Dynamic, ?defaultValue :Dynamic) :Command {})

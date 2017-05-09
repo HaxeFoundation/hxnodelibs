@@ -11,7 +11,7 @@ abstract VagrantMachineStatus(String) {
   var Saved = "saved";
 }
 
-typedef StatusResult = {
+typedef VagrantStatusResult = {
 	var status :VagrantMachineStatus;
 	var provider :String;
 }
@@ -20,7 +20,7 @@ extern class VagrantMachine extends js.node.events.EventEmitter<Dynamic>
 {
 	public function init(args :Array<String>, cb :Error->Dynamic->Void) :Void;
 	public function up(cb :Error->Dynamic->Void) :Void;
-	public function status(cb :Error->Dynamic<StatusResult>->Void) :Void;
+	public function status(cb :Error->Dynamic<VagrantStatusResult>->Void) :Void;
 	public function sshConfig(cb :Error->{port :Int,hostname:String,user:String,private_key:String}->Void) :Void;
 	public function suspend(cb :Error->Dynamic->Void) :Void;
 	public function resume(cb :Error->Dynamic->Void) :Void;

@@ -1,12 +1,12 @@
 package js.npm.fluentlogger;
 
 /**
- * https://github.com/fluent/fluent-logger-node
+ * https://www.npmjs.com/package/fluent-logger
  */
 
 import js.Node;
 import js.Error;
-import js.support.Either;
+import haxe.extern.EitherType;
 
 typedef FluentConfigureOpts = {
 	@:optional var host :String;
@@ -17,8 +17,10 @@ typedef FluentConfigureOpts = {
 }
 
 @:jsRequire("fluent-logger")
-extern class FluentLogger //extends js.node.events.EventEmitter<Dynamic>
+extern class FluentLogger
 {
 	public static function createFluentSender(tag :String, opts :FluentConfigureOpts) :FluentLogger;
-	public function emit(label :String, record :Dynamic, ?time :Either<Date, Float>, ?cb :Void->Void) :Void;
+
+	@:overload(function(record :Dynamic, ?time :EitherType<Date, Float>, ?cb :Void->Void) :Void {})
+	public function emit(label :String, record :Dynamic, ?time :EitherType<Date, Float>, ?cb :Void->Void) :Void;
 }
