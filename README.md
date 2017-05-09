@@ -1,4 +1,4 @@
-![hxnodelibs](http://take.ms/dlXH9)
+![hxnodelibs](https://raw.githubusercontent.com/HaxeFoundation/hxnodejs/master/hxnodejs.png)
 
 # Haxe NodeLibs
 
