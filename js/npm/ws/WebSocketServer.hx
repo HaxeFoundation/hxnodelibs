@@ -29,54 +29,53 @@ import js.node.net.Socket;
 /**
  * 
  */
-extern class WebSocketServerOption
-{
+typedef WebSocketServerOption = {
 	/**
 	 * 
 	 */
-	var host : String;
+	@:optional var host : String;
 	
 	/**
 	 * 
 	 */
-	var port : Int;
+	@:optional var port : Int;
 	
 	/**
 	 * 
 	 */
-	var server : Server;
+	@:optional var server : Server;
 	
 	/**
 	 * 
 	 */
-	var verifyClient : Dynamic;
+	@:optional var verifyClient : Dynamic;
 	
 	/**
 	 * 
 	 */
-	var path : String;
+	@:optional var path : String;
 	
 	/**
 	 * 
 	 */
-	var noServer : Bool;
+	@:optional var noServer : Bool;
 	
 	/**
 	 * 
 	 */
-	var disableHixie : Bool;
+	@:optional var disableHixie : Bool;
 	
 	/**
 	 * 
 	 */
-	var clientTracking : Bool;
+	@:optional var clientTracking : Bool;
 }
 
 /**
  * ...
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
-@:native("(require('ws').Server)")
+@:jsRequire("ws", "Server")
 extern class WebSocketServer extends EventEmitter<WebSocketServer>
 {
 
