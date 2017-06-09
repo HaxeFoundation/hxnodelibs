@@ -75,7 +75,7 @@ typedef WebSocketServerOption = {
  * ...
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
-@:native("(require('ws').Server)")
+@:jsRequire("ws", "Server")
 extern class WebSocketServer extends EventEmitter<WebSocketServer>
 {
 

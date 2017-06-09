@@ -106,7 +106,7 @@ extern class WebSocketMessageFlag
  * https://github.com/einaros/ws
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
-@:native("require('ws')")
+@:jsRequire("ws")
 extern class WebSocket extends EventEmitter<WebSocket>
 {
 	static var CONNECTING 	: Dynamic;
