@@ -6,7 +6,7 @@
     "version": "0.1.0",
     "releasenote": "Initial Release for node.js 0.12",
     "contributors": ["nadako","eduardo-costa"],
-    "tags": ["js", "nodejs", "mongodb", "express"],
+    "tags": ["js", "nodejs", "mongodb", "express", "extern"],
 	"dependencies": 
 	{
 		"hxnodejs": ""    
