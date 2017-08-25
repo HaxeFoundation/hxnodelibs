@@ -124,6 +124,7 @@ extern class Application
 	 * @param	p_function
 	 */
 	@:overload(function(p_function : ExpressRequest -> ExpressResponse -> Dynamic):Void{})
+	@:overload(function(p_path:String):Void{})
 	function use(p_path:String,p_function : ExpressRequest -> ExpressResponse -> Dynamic):Void;
 
 	/**
