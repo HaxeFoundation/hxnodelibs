@@ -83,7 +83,7 @@ extern class Application
 	 * This allows you to provide both HTTP and HTTPS versions of your app with the same codebase easily, as the app does not inherit from these, it is simply a callback:
 	 * @param	p_port
 	 */
-	function listen(p_port:Int):Void;
+	function listen(p_port:Int,?p_cbk:Void->Void):Void;
 	
 	/**
 	 * Assigns setting name to value.
