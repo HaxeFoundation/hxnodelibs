@@ -23,7 +23,7 @@ extern class MongoCollection
 	function new(p_db:MongoDatabase,p_name:String,p_pkfactory : ObjectID,p_options : MongoCollectionBuildOption):Void;
 
 	
-	var insert						: Dynamic;
+	var insert			: Dynamic;
 	var remove                      : Dynamic;
 	var rename                      : Dynamic;
 	var save                        : Dynamic;
@@ -54,5 +54,7 @@ extern class MongoCollection
 	var initializeUnorderedBulkOp   : Dynamic;
 	var initializeOrderedBulkOp     : Dynamic;
 	var parallelCollectionScan      : Dynamic;
+	var insertOne			: Dynamic;
+	var updateOne			: Dynamic;
 	
 }
