@@ -24,6 +24,7 @@ extern class MongoCollection
 
 	
 	var insert			: Dynamic;
+	var insertMany			: Dynamic;	//3.2
 	var remove                      : Dynamic;
 	var rename                      : Dynamic;
 	var save                        : Dynamic;
