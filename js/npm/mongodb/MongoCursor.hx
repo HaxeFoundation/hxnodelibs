@@ -37,9 +37,9 @@ extern class MongoCursor
 	function new(p_db:MongoDatabase, p_collection:MongoCollection, p_selector:Dynamic, p_fields:Dynamic, p_options:MongoCursorOption):Void;
 	
 	
-	var rewind				: Dynamic;
-	var toArray             : Dynamic;
-	var each                : Dynamic;
+	var rewind		: Dynamic;
+	
+	
 	var count               : Dynamic;
 	var sort                : Dynamic;
 	var limit               : Dynamic;
@@ -52,5 +52,11 @@ extern class MongoCursor
 	var stream              : Dynamic;
 	var close               : Dynamic;
 	var isClosed            : Dynamic;
+	
+	/**
+	End of stream is signaled by a null passed in item
+	*/
+	function each	( func :/*err:*/  Dynamic  -> /*item:*/ Dynamic -> Void ) : Void;
+	function toArray( func :/*err:*/  Dynamic -> /*items:*/ Array<Dynamic> -> Void ) : Void;
 	
 }
