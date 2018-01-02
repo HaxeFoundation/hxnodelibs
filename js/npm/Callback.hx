@@ -1,5 +1,7 @@
 package js.npm;
 
+import js.Error;
+
 typedef Callback0 = Null<Error> -> Void;
 
 typedef Callback1<A> = Null<Error> -> Null<A> -> Void;
