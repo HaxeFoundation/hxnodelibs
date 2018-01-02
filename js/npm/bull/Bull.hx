@@ -4,6 +4,7 @@ import js.Error;
 import js.node.events.EventEmitter;
 import js.node.events.EventEmitter.Event;
 import js.npm.bluebird.Bluebird;
+import js.npm.redis.RedisClient;
 
 typedef BullJobError=Dynamic;
 typedef Done0=Void->Void;
@@ -22,6 +23,36 @@ typedef JobOptions = {
 	@:optional var timeout :Int;
 	@:optional var jobId :String;
 	@:optional var removeOnComplete :Bool;
+	@:optional var removeOnFail :Bool;
+	@:optional var priority :Int;
+}
+
+typedef BullJobCounts = {
+	var waiting :Int;
+	var active :Int;
+	var completed :Int;
+	var failed :Int;
+	var delayed :Int;
+}
+
+@:enum
+abstract RedisConnectionType(String) from String to String {
+	var client = 'client';
+	var subscriber = 'subscriber';
+}
+
+typedef BullOptions = {
+	@:optional var redis :{?port:Int, ?host:String, ?password :String, ?db:Int};
+	@:optional var limiter :{max:Float, duration:Float};
+	@:optional var prefix :String;
+	@:optional var settings :{
+		?lockDuration :Float,
+		?stalledInterval :Float,
+		?maxStalledCount :Float,
+		?guardInterval :Float,
+		?retryProcessDelay :Float
+	};
+	@:optional var createClient :RedisConnectionType->RedisClient;
 }
 
 typedef Progress=Float;
@@ -47,8 +78,10 @@ typedef JobType=String;
 extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 {
 	@:selfCall
-	@:overload(function(queueName :String, redisConnectionString :String, ?redisOpts :Dynamic) :Void { })
-	public function new(queueName :String, redisPort :Int, redisAddress :String, ?redisOpts :Dynamic) :Void;
+	@:overload(function(queueName :String, url :String, opts :BullOptions) :Void { })
+	@:overload(function(queueName :String, url :String) :Void { })
+	@:overload(function(queueName :String) :Void { })
+	public function new(queueName :String, opts :BullOptions) :Void;
 
 	@:overload(function(concurrency :Int, job :Job<JobData>) :Bluebird<Dynamic, Dynamic> { })
 	@:overload(function(job :Job<JobData>) :Bluebird<Dynamic, Dynamic> { })
@@ -63,6 +96,15 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	public function pause(?isLocal :Bool) :Bluebird<Dynamic, Dynamic>;
 	public function resume(?isLocal :Bool) :Bluebird<Dynamic, Dynamic>;
 	public function count() :Bluebird<Int, Dynamic>;
+	public function getJobCounts() :Bluebird<BullJobCounts, Dynamic>;
+	public function getActive() :Bluebird<Array<Job<JobData>>, Dynamic>;
+	public function getActiveCount() :Bluebird<Int, Dynamic>;
+	public function getDelayedCount() :Bluebird<Int, Dynamic>;
+	public function getFailedCount() :Bluebird<Int, Dynamic>;
+	public function getCompletedCount() :Bluebird<Int, Dynamic>;
+	public function getWaitingCount() :Bluebird<Int, Dynamic>;
+	public function getPausedCount() :Bluebird<Int, Dynamic>;
+	public function getWaiting() :Bluebird<Int, Dynamic>;
 	public function empty() :Bluebird<String, Dynamic>;
 	public function close() :Bluebird<Void, Dynamic>;
 	public function getJob(jobId :String) :Bluebird<Null<Job<JobData>>, Dynamic>;

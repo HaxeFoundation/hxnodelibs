@@ -23,7 +23,7 @@ import js.node.net.Socket;
 	 * function (socket) { }
 	 * When a new WebSocket connection is established. socket is an object of type ws.WebSocket.
 	 */	
-	var Connection : WebSocketServerEvent<Socket->Void> = "connection";
+	var Connection : WebSocketServerEvent<WebSocket->IncomingMessage->Void> = "connection";
 }
 
 /**

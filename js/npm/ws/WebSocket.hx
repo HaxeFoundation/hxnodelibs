@@ -236,7 +236,7 @@ extern class WebSocket extends EventEmitter<WebSocket>
 	/**
 	 * Emulates the W3C Browser based WebSocket interface using function members.
 	 */
-	var onclose : Int->String;
+	var onclose : Int->String->Void;
 	
 	/**
 	 * Emulates the W3C Browser based WebSocket interface using function members.

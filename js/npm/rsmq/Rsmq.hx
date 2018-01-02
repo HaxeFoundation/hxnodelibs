@@ -2,7 +2,7 @@ package js.npm.rsmq;
 
 /* https://github.com/smrchy/rsmq */
 
-import js.npm.RedisClient;
+import js.npm.redis.RedisClient;
 
 import js.Error;
 

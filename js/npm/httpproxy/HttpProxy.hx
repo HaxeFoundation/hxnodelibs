@@ -17,6 +17,7 @@ typedef ProxyServerOptions = {
 	@:optional var localAddress :String;
 	@:optional var ignorePath :Bool;
 	@:optional var prependPath :Bool;
+	@:optional var proxyTimeout :Int;
 }
 
 @:jsRequire('http-proxy')
