@@ -1,5 +1,47 @@
 package js.npm.materialui;
 
+/**
+ * React js import hackery to this working
+ * You'll need (in libs.js):
+ * 'material-ui/styles/withTheme': require('material-ui/styles/withTheme'),
+ */
+@:jsRequire('material-ui/styles/withTheme', 'default')
+class StylesWithTheme
+{
+	@:selfCall
+	public static var call :Dynamic;
+}
+
+/**
+ * React js import hackery to this working
+ * See StylesWithTheme and add the modified entry in libs.js
+ */
+@:jsRequire('material-ui/styles/createMuiTheme', 'default')
+class StylesCreateMuiTheme
+{
+	@:selfCall
+	public static var call :Dynamic;
+}
+
+/**
+ * React js import hackery to this working
+ * See StylesWithTheme and add the modified entry in libs.js
+ */
+@:jsRequire('material-ui/styles/withStyles', 'default')
+class StylesWithStyles
+{
+	@:selfCall
+	public static var call :Dynamic;
+}
+
+@:jsRequire('material-ui/styles/withStyles', 'default')
+class Styles
+{
+	public static var withStyles :Dynamic = Reflect.field(js.Lib.require('material-ui/styles/withStyles'), 'default');
+	public static var createMuiTheme :Dynamic = Reflect.field(js.Lib.require('material-ui/styles/createMuiTheme'), 'default');
+	public static var withTheme :Dynamic = Reflect.field(js.Lib.require('material-ui/styles/withTheme'), 'default');
+}
+
 @:jsRequire('material-ui','AppBar')
 extern class AppBar extends react.ReactComponent  { }
 
@@ -15,6 +57,9 @@ extern class BottomNavigation extends react.ReactComponent  { }
 @:jsRequire('material-ui','BottomNavigationItem')
 extern class BottomNavigationItem extends react.ReactComponent  { }
 
+@:jsRequire('material-ui','Button')
+extern class Button extends react.ReactComponent  { }
+
 @:jsRequire('material-ui','Card')
 extern class Card extends react.ReactComponent  { }
 
@@ -29,6 +74,12 @@ extern class CardHeader extends react.ReactComponent  { }
 
 @:jsRequire('material-ui','Chip')
 extern class Chip extends react.ReactComponent  { }
+
+@:jsRequire('material-ui/Progress', 'CircularProgress')
+extern class CircularProgress extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','CloseIcon')
+extern class CloseIcon extends react.ReactComponent  { }
 
 @:jsRequire('material-ui','Dialog')
 extern class Dialog extends react.ReactComponent  { }
@@ -47,6 +98,9 @@ extern class GridList extends react.ReactComponent  { }
 
 @:jsRequire('material-ui','GridTile')
 extern class GridTile extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','Icon')
+extern class Icon extends react.ReactComponent  { }
 
 @:jsRequire('material-ui','IconButton')
 extern class IconButton extends react.ReactComponent  { }
@@ -105,5 +159,16 @@ extern class TableBody extends react.ReactComponent  { }
 @:jsRequire('material-ui','Toggle')
 extern class Toggle extends react.ReactComponent  { }
 
+@:jsRequire('material-ui','Toolbar')
+extern class Toolbar extends react.ReactComponent  { }
+
 @:jsRequire('material-ui','ToolbarTitle')
 extern class ToolbarTitle extends react.ReactComponent  { }
+
+
+
+
+//Icons (material-ui-icons)
+
+@:jsRequire('material-ui-icons', 'ModeEdit')
+extern class ModeEditIcon extends react.ReactComponent  { }
