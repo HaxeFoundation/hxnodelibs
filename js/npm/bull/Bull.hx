@@ -1,9 +1,9 @@
 package js.npm.bull;
 
 import js.Error;
+import js.Promise;
 import js.node.events.EventEmitter;
 import js.node.events.EventEmitter.Event;
-import js.npm.bluebird.Bluebird;
 import js.npm.redis.RedisClient;
 
 typedef BullJobError=Dynamic;
@@ -64,7 +64,7 @@ typedef JobType=String;
 @:enum abstract QueueEvent<T:haxe.Constraints.Function>(Event<T>) to Event<T> {
 	var Ready : QueueEvent<Void->Void> = "ready";
 	var Error : QueueEvent<Error->Void> = "error";
-	var Active : QueueEvent<Job<Dynamic>->Bluebird<Dynamic,Dynamic>->Void> = "active";
+	var Active : QueueEvent<Job<Dynamic>->Promise<Dynamic>->Void> = "active";
 	var Stalled : QueueEvent<Job<Dynamic>->Void> = "stalled";
 	var Progress : QueueEvent<Job<Dynamic>->Progress->Void> = "progress";
 	var Completed : QueueEvent<Job<Dynamic>->Dynamic->Void> = "completed";
@@ -83,8 +83,8 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	@:overload(function(queueName :String) :Void { })
 	public function new(queueName :String, opts :BullOptions) :Void;
 
-	@:overload(function(concurrency :Int, job :Job<JobData>) :Bluebird<Dynamic, Dynamic> { })
-	@:overload(function(job :Job<JobData>) :Bluebird<Dynamic, Dynamic> { })
+	@:overload(function(concurrency :Int, job :Job<JobData>) :Promise<Dynamic> { })
+	@:overload(function(job :Job<JobData>) :Promise<Dynamic> { })
 	@:overload(function(cb :Job<JobData>->Done0->Void) :Void { })
 	@:overload(function(cb :Job<JobData>->Done1->Void) :Void { })
 	@:overload(function(cb :Job<JobData>->Done2<Result>->Void) :Void { })
@@ -92,30 +92,30 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	@:overload(function(concurrency :Int, cb :Job<JobData>->Done1->Void) :Void { })
 	public function process(concurrency :Int, cb :Job<JobData>->Done2<Result>->Void) :Void;
 
-	public function add(data :JobData, opts :JobOptions) :Bluebird<Job<JobData>, Dynamic>;
-	public function pause(?isLocal :Bool) :Bluebird<Dynamic, Dynamic>;
-	public function resume(?isLocal :Bool) :Bluebird<Dynamic, Dynamic>;
-	public function count() :Bluebird<Int, Dynamic>;
-	public function getJobCounts() :Bluebird<BullJobCounts, Dynamic>;
-	public function getActive() :Bluebird<Array<Job<JobData>>, Dynamic>;
-	public function getActiveCount() :Bluebird<Int, Dynamic>;
-	public function getDelayedCount() :Bluebird<Int, Dynamic>;
-	public function getFailedCount() :Bluebird<Int, Dynamic>;
-	public function getCompletedCount() :Bluebird<Int, Dynamic>;
-	public function getWaitingCount() :Bluebird<Int, Dynamic>;
-	public function getPausedCount() :Bluebird<Int, Dynamic>;
-	public function getWaiting() :Bluebird<Int, Dynamic>;
-	public function empty() :Bluebird<String, Dynamic>;
-	public function close() :Bluebird<Void, Dynamic>;
-	public function getJob(jobId :String) :Bluebird<Null<Job<JobData>>, Dynamic>;
-	public function clean(gracePeriod :Int, ?type :JobType, ?limit :Int) :Bluebird<Void, Dynamic>;
+	public function add(data :JobData, opts :JobOptions) :Promise<Job<JobData>>;
+	public function pause(?isLocal :Bool) :Promise<Dynamic>;
+	public function resume(?isLocal :Bool) :Promise<Dynamic>;
+	public function count() :Promise<Int>;
+	public function getJobCounts() :Promise<BullJobCounts>;
+	public function getActive() :Promise<Array<Job<JobData>>>;
+	public function getActiveCount() :Promise<Int>;
+	public function getDelayedCount() :Promise<Int>;
+	public function getFailedCount() :Promise<Int>;
+	public function getCompletedCount() :Promise<Int>;
+	public function getWaitingCount() :Promise<Int>;
+	public function getPausedCount() :Promise<Int>;
+	public function getWaiting() :Promise<Int>;
+	public function empty() :Promise<String>;
+	public function close() :Promise<Void>;
+	public function getJob(jobId :String) :Promise<Null<Job<JobData>>>;
+	public function clean(gracePeriod :Int, ?type :JobType, ?limit :Int) :Promise<Void>;
 }
 
 extern class Job<JobData>
 {
 	public var data :JobData;
 	public function progress(val :Progress) :Void;
-	public function remove() :Bluebird<Void, Dynamic>;
-	public function retry() :Bluebird<Void, Dynamic>;
+	public function remove() :Promise<Void>;
+	public function retry() :Promise<Void>;
 }
 
