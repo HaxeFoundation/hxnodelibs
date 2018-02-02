@@ -85,6 +85,7 @@ extern class MongoDatabase implements Dynamic<Dynamic>
 	 * @param	p_options
 	 * @param	p_callback
 	 */
+	@:overload(function (p_name:String ):MongoCollection{})
 	@:overload(function (p_name:String,p_callback:Error->MongoCollection->Void):MongoCollection{})
 	function collection(p_name:String, p_options : MongoCollectionFetchOption, p_callback:Error->MongoCollection->Void):MongoCollection;
 	
