@@ -57,6 +57,6 @@ extern class MongoCursor
 	End of stream is signaled by a null passed in item
 	*/
 	function each	( func :/*err:*/  Dynamic  -> /*item:*/ Dynamic -> Void ) : Void;
-	function toArray( func :/*err:*/  Dynamic -> /*items:*/ Array<Dynamic> -> Void ) : Void;
+	function toArray( func :/*err:*/  Dynamic -> /*items:*/ Array<Dynamic> -> Void ) : Dynamic;
 	
 }
