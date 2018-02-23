@@ -162,6 +162,9 @@ extern class Toggle extends react.ReactComponent  { }
 @:jsRequire('material-ui','Toolbar')
 extern class Toolbar extends react.ReactComponent  { }
 
+@:jsRequire('material-ui','ToolbarGroup')
+extern class ToolbarGroup extends react.ReactComponent  { }
+
 @:jsRequire('material-ui','ToolbarTitle')
 extern class ToolbarTitle extends react.ReactComponent  { }
 
