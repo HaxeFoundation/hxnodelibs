@@ -1,4 +1,4 @@
-package js.npm.express;
+package util;
 
 import haxe.macro.Context;
 import haxe.macro.Expr;
