@@ -18,3 +18,19 @@ typedef LayoutData = {
 
 @:jsRequire('react-grid-layout')
 extern class ReactGridLayout extends react.ReactComponent  { }
+
+@:jsRequire('react-grid-layout', 'Responsive')
+extern class ResponsiveReactGridLayout extends ReactGridLayout {}
+
+
+@:jsRequire('react-grid-layout', 'WidthProvider')
+extern class ReactGridWidthProvider extends ReactGridLayout
+{
+	@:selfCall
+	public function new(cls :Class<ReactGridLayout>) :Void;
+}
+
+// class ReactGridWidthProviderImpl
+// {
+// 	public static var ResponsiveReactGridLayout :Class<react.ReactComponent> = cast new ReactGridWidthProvider(ReactGridResponsive);
+// }
