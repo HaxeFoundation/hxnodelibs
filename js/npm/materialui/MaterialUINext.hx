@@ -1,10 +1,9 @@
 package js.npm.materialui;
 
 /**
- * React js import hackery to this working
- * You'll need (in libs.js):
- * 'material-ui/styles/withTheme': require('material-ui/styles/withTheme'),
+ * Incomplete
  */
+
 @:jsRequire('material-ui/styles/withTheme', 'default')
 class StylesWithTheme
 {
@@ -12,10 +11,6 @@ class StylesWithTheme
 	public static var call :Dynamic;
 }
 
-/**
- * React js import hackery to this working
- * See StylesWithTheme and add the modified entry in libs.js
- */
 @:jsRequire('material-ui/styles/createMuiTheme', 'default')
 class StylesCreateMuiTheme
 {
@@ -23,10 +18,6 @@ class StylesCreateMuiTheme
 	public static var call :Dynamic;
 }
 
-/**
- * React js import hackery to this working
- * See StylesWithTheme and add the modified entry in libs.js
- */
 @:jsRequire('material-ui/styles/withStyles', 'default')
 class StylesWithStyles
 {
