@@ -23,7 +23,7 @@ extern class MongoCollection
 	function new(p_db:MongoDatabase,p_name:String,p_pkfactory : ObjectID,p_options : MongoCollectionBuildOption):Void;
 
 	
-	var insert			: Dynamic;
+	function insert(obj:Dynamic, 	?options:Dynamic) : js.Promise < Dynamic >;
 	var insertMany			: Dynamic;	//3.2
 	var remove                      : Dynamic;
 	var rename                      : Dynamic;
