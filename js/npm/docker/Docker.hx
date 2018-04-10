@@ -153,6 +153,7 @@ typedef CreateContainerOptions = {
 	@:optional var ExposedPorts :Dynamic;
 	@:optional var HostConfig :CreateContainerHostConfig;
 	@:optional var Volumes :Dynamic;
+	@:optional var NetworkSettings :Dynamic;
 }
 
 typedef StartContainerOptions = {

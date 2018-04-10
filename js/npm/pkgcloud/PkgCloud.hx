@@ -1,5 +1,7 @@
 package js.npm.pkgcloud;
 
+import haxe.extern.EitherType;
+
 import js.Node;
 import js.Error;
 import js.node.stream.Writable;
@@ -97,6 +99,7 @@ typedef StorageClient = {
 
 	function upload(options :Dynamic) :IWritable;
 	function download(options :Dynamic, ?cb :Null<Error>->Void) :IReadable;
+	@:overload(function(container :EitherType<Container,String>, options :Dynamic, cb :Null<Error>->Array<File>->Void):Void {})
 	function getFiles(container :Container, cb :Null<Error>->Array<File>->Void) :Void;
 	function getFile(container :Container, fileName :String, cb :Null<Error>->File->Void) :Void;
 	function removeFile(container :Container, file :File, ?cb :Null<Error>->Void) :Void;
