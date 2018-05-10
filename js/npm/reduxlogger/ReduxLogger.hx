@@ -1,6 +1,6 @@
 package js.npm.reduxlogger;
 
-import redux.IMiddleware;
+typedef IMiddleware<A,S> = Dynamic;
 
 @:jsRequire('redux-logger')
 extern class ReduxLogger

@@ -53,8 +53,8 @@ extern class Rsmq
 {
 	public function new(?options :RsmqConstructorOptions) :Void;
 	public function createQueue(options :RsmqCreateQueueOptions, cb :Null<Error>->RsmqResponse->Void) :Void;
-	public function sendMessage(options :RsmqSendMessageOptions, cb :Null<Error>->RsmqMessageId->Void) :Void;
-	public function receiveMessage<T>(options :RsmqRecieveMessageOptions, cb :Null<Error>->RsmqMessage<T>->Void) :Void;
+	public function sendMessage<T>(options :RsmqSendMessageOptions<T>, cb :Null<Error>->RsmqMessageId->Void) :Void;
+	public function receiveMessage<T, T2>(options :RsmqRecieveMessageOptions<T>, cb :Null<Error>->RsmqMessage<T2>->Void) :Void;
 	public function deleteMessage(options :RsmqDeleteMessageOptions, cb :Null<Error>->RsmqResponse->Void) :Void;
 
 	public function listQueues(cb :Null<Error>->Array<String>->Void) :Void;

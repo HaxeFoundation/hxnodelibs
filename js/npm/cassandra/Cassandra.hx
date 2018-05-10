@@ -22,7 +22,7 @@ typedef Result = {
 typedef ResultsCallback=Err->Result->Void;
 
 @:jsRequire("cassandra-driver", "Client")
-extern class Client extends js.node.events.EventEmitter
+extern class Client extends js.node.events.EventEmitter<Client>
 {
 	public function new(args :ConstructorArgs) : Void;
 
@@ -63,7 +63,7 @@ extern class PlainTextAuthProvider
 }
 
 @:jsRequire("cassandra-driver", "Connection")
-extern class Connection extends js.node.events.EventEmitter
+extern class Connection extends js.node.events.EventEmitter<Connection>
 {
 	public function new(endPoint :String, protocolVersion :Float, options :ConstructorArgs) :Void;
 	public function open(cb :Null<Err>->Void) :Void;

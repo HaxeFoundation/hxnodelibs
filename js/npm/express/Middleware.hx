@@ -10,15 +10,15 @@ from MiddlewareHandler to MiddlewareHandler
 from Middleware to Middleware {}
 
 typedef MiddlewareNext = ?Dynamic->Void;
-typedef MiddlewareHandler = Request->Response->MiddlewareNext->Void;
-typedef MiddlewareResponder = Request->Response->Void;
-typedef MiddlewareErrorHandler = Dynamic -> Request -> Response -> Callback0 -> Void;
-typedef MiddlewareParam<P> = Request -> Response -> MiddlewareNext -> P -> Void;
+typedef MiddlewareHandler = ExpressRequest->ExpressResponse->MiddlewareNext->Void;
+typedef MiddlewareResponder = ExpressRequest->ExpressResponse->Void;
+typedef MiddlewareErrorHandler = Dynamic -> ExpressRequest -> ExpressResponse -> Callback0 -> Void;
+typedef MiddlewareParam<P> = ExpressRequest -> ExpressResponse -> MiddlewareNext -> P -> Void;
 typedef MiddlewareMethod = Route->Middleware->Void;
 
 extern interface Middleware {}
 
-@:build( CopyMethods.build([
+@:build( js.npm.express.CopyMethods.build([
 	'post', 
 	'put', 
 	'head', 

@@ -3,6 +3,7 @@ package js.npm.express;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
+@:noPackageRestrict
 class CopyMethods {	
 
 	static function toIdentifier( verb : String ) {

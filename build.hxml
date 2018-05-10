@@ -1,4 +1,6 @@
 -js no-output
+-lib hxnodejs
+-lib react
 --no-output
 --each
 --next

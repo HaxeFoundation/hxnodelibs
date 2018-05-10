@@ -14,7 +14,7 @@ typedef StaticOptions = {
 	?lastModified : Bool,
 	?maxAge : Int,
 	?redirect : Bool,
-	?setHeaders : Response -> String -> js.node.fs.Stats -> Void
+	?setHeaders : ExpressResponse -> String -> js.node.fs.Stats -> Void
 }
 
 @:jsRequire('express', 'static')
