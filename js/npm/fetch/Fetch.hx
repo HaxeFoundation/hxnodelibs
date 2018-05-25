@@ -13,7 +13,11 @@ abstract RedirectOption(String) {
 
 typedef FetchOptions = {
 	@:optional var method :String;
+#if nodejs
 	@:optional var body :EitherType<String, js.node.stream.Readable.IReadable>;
+#else
+	@:optional var body :EitherType<String, Dynamic>;
+#end
 	@:optional var headers :Dynamic<String>;
 	@:optional var redirect :RedirectOption;
 	@:optional var follow :Int;
@@ -26,7 +30,7 @@ typedef FetchOptions = {
 #if nodejs
 	@:jsRequire("node-fetch")
 #else
-	@:jsRequire("fetch")
+	@:jsRequire("whatwg-fetch")
 #end
 extern class Fetch
 {

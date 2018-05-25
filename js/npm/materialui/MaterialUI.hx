@@ -114,6 +114,9 @@ extern class TableRow extends react.ReactComponent  { }
 @:jsRequire('material-ui','TableBody')
 extern class TableBody extends react.ReactComponent  { }
 
+@:jsRequire('material-ui','TextField')
+extern class TextField extends react.ReactComponent  { }
+
 @:jsRequire('material-ui','Toggle')
 extern class Toggle extends react.ReactComponent  { }
 
