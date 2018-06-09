@@ -15,6 +15,15 @@ typedef JobOptionsBackoff = {
 	var type :String;
 	var delay :Int;
 }
+
+typedef JobOptionsRepeatOpts = {
+	@:optional var cron :String;
+	@:optional var tz :String;
+	@:optional var endDate :Dynamic;
+	@:optional var limit :Int;
+	@:optional var every :Float;
+}
+
 typedef JobOptions = {
 	@:optional var delay :Int;
 	@:optional var attempts :Int;
@@ -22,8 +31,10 @@ typedef JobOptions = {
 	@:optional var lifo :Bool;
 	@:optional var timeout :Int;
 	@:optional var jobId :String;
+	@:optional var stackTraceLimit :Int;
 	@:optional var removeOnComplete :Bool;
 	@:optional var removeOnFail :Bool;
+	@:optional var repeat :BullRepeatOpts;
 	@:optional var priority :Int;
 }
 
@@ -92,6 +103,9 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	@:overload(function(concurrency :Int, cb :Job<JobData>->Done1->Void) :Void { })
 	public function process(concurrency :Int, cb :Job<JobData>->Done2<Result>->Void) :Void;
 
+	@:overload(function(queueName :String, data :JobData) :Promise<Job<JobData>> { })
+	@:overload(function(queueName :String, data :JobData, opts :JobOptions) :Promise<Job<JobData>> { })
+	@:overload(function(data :JobData) :Promise<Job<JobData>> { })
 	public function add(data :JobData, opts :JobOptions) :Promise<Job<JobData>>;
 	public function pause(?isLocal :Bool) :Promise<Dynamic>;
 	public function resume(?isLocal :Bool) :Promise<Dynamic>;
