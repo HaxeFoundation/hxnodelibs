@@ -34,7 +34,7 @@ typedef JobOptions = {
 	@:optional var stackTraceLimit :Int;
 	@:optional var removeOnComplete :Bool;
 	@:optional var removeOnFail :Bool;
-	@:optional var repeat :BullRepeatOpts;
+	@:optional var repeat :JobOptionsRepeatOpts;
 	@:optional var priority :Int;
 }
 
