@@ -18,7 +18,7 @@ typedef MiddlewareMethod = Route->Middleware->Void;
 
 extern interface Middleware {}
 
-@:build( util.CopyMethods.build([
+@:build( js.npm.express.CopyMethods.build([
 	'post', 
 	'put', 
 	'head', 
