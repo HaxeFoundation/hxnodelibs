@@ -115,7 +115,7 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	public function resume(?isLocal :Bool) :Promise<Dynamic>;
 	public function count() :Promise<Int>;
 	public function getJobCounts() :Promise<BullJobCounts>;
-	public function getRepeatableJobs(?start :Float, ?end :Float, ?asc :Bool) :Promise<Array<Job<JobData>>>;
+	public function getRepeatableJobs(?start :Float, ?end :Float, ?asc :Bool) :Promise<Array<JobOptionsRepeatOpts>>;
 	@:overload(function(opts :JobOptionsRepeatOpts) :Promise<Void> { })
 	public function removeRepeatable(name :String, opts :JobOptionsRepeatOpts) :Promise<Void>;
 	public function getActive() :Promise<Array<Job<JobData>>>;
