@@ -83,11 +83,10 @@ typedef JobType=String;
 	var Failed : QueueEvent<Job<Dynamic>->Dynamic->Void> = "failed";
 	var Paused : QueueEvent<Void->Void> = "paused";
 	var Resumed : QueueEvent<Job<Dynamic>->Void> = "resumed";
-	var Cleaned : QueueEvent<Array<Job<Dynamic>>->JobType> = "cleaned";
 }
 
 @:enum abstract JobEvent<T:haxe.Constraints.Function>(Event<T>) to Event<T> {
-	var Error : QueueEvent<Error->Void> = "error";
+	var Error : JobEvent<Error->Void> = "error";
 }
 
 @:jsRequire("bull")
@@ -115,7 +114,6 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	public function pause(?isLocal :Bool) :Promise<Dynamic>;
 	public function resume(?isLocal :Bool) :Promise<Dynamic>;
 	public function count() :Promise<Int>;
-	public function clean(grace: Float, ?status: String, ?limit: Float) :Promise<Array<Float>>;
 	public function getJobCounts() :Promise<BullJobCounts>;
 	public function getRepeatableJobs(?start :Float, ?end :Float, ?asc :Bool) :Promise<Array<Job<JobData>>>;
 	@:overload(function(opts :JobOptionsRepeatOpts) :Promise<Void> { })
