@@ -15,6 +15,9 @@ extern class BottomNavigation extends react.ReactComponent  { }
 @:jsRequire('material-ui','BottomNavigationItem')
 extern class BottomNavigationItem extends react.ReactComponent  { }
 
+@:jsRequire('material-ui','Button')
+extern class Button extends react.ReactComponent  { }
+
 @:jsRequire('material-ui','Card')
 extern class Card extends react.ReactComponent  { }
 
@@ -29,6 +32,12 @@ extern class CardHeader extends react.ReactComponent  { }
 
 @:jsRequire('material-ui','Chip')
 extern class Chip extends react.ReactComponent  { }
+
+@:jsRequire('material-ui/Progress', 'CircularProgress')
+extern class CircularProgress extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','CloseIcon')
+extern class CloseIcon extends react.ReactComponent  { }
 
 @:jsRequire('material-ui','Dialog')
 extern class Dialog extends react.ReactComponent  { }
@@ -47,6 +56,9 @@ extern class GridList extends react.ReactComponent  { }
 
 @:jsRequire('material-ui','GridTile')
 extern class GridTile extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','Icon')
+extern class Icon extends react.ReactComponent  { }
 
 @:jsRequire('material-ui','IconButton')
 extern class IconButton extends react.ReactComponent  { }
@@ -102,8 +114,22 @@ extern class TableRow extends react.ReactComponent  { }
 @:jsRequire('material-ui','TableBody')
 extern class TableBody extends react.ReactComponent  { }
 
+@:jsRequire('material-ui','TextField')
+extern class TextField extends react.ReactComponent  { }
+
 @:jsRequire('material-ui','Toggle')
 extern class Toggle extends react.ReactComponent  { }
 
+@:jsRequire('material-ui','Toolbar')
+extern class Toolbar extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','ToolbarGroup')
+extern class ToolbarGroup extends react.ReactComponent  { }
+
 @:jsRequire('material-ui','ToolbarTitle')
 extern class ToolbarTitle extends react.ReactComponent  { }
+
+//Icons (material-ui-icons)
+
+@:jsRequire('material-ui-icons', 'ModeEdit')
+extern class ModeEditIcon extends react.ReactComponent  { }

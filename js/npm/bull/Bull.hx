@@ -15,6 +15,15 @@ typedef JobOptionsBackoff = {
 	var type :String;
 	var delay :Int;
 }
+
+typedef JobOptionsRepeatOpts = {
+	@:optional var cron :String;
+	@:optional var tz :String;
+	@:optional var endDate :Dynamic;
+	@:optional var limit :Int;
+	@:optional var every :Float;
+}
+
 typedef JobOptions = {
 	@:optional var delay :Int;
 	@:optional var attempts :Int;
@@ -22,8 +31,10 @@ typedef JobOptions = {
 	@:optional var lifo :Bool;
 	@:optional var timeout :Int;
 	@:optional var jobId :String;
+	@:optional var stackTraceLimit :Int;
 	@:optional var removeOnComplete :Bool;
 	@:optional var removeOnFail :Bool;
+	@:optional var repeat :JobOptionsRepeatOpts;
 	@:optional var priority :Int;
 }
 
@@ -63,6 +74,7 @@ typedef JobType=String;
 **/
 @:enum abstract QueueEvent<T:haxe.Constraints.Function>(Event<T>) to Event<T> {
 	var Ready : QueueEvent<Void->Void> = "ready";
+	var Cleaned : QueueEvent<Array<Float>->String->Void> = "cleaned";
 	var Error : QueueEvent<Error->Void> = "error";
 	var Active : QueueEvent<Job<Dynamic>->Promise<Dynamic>->Void> = "active";
 	var Stalled : QueueEvent<Job<Dynamic>->Void> = "stalled";
@@ -71,7 +83,10 @@ typedef JobType=String;
 	var Failed : QueueEvent<Job<Dynamic>->Dynamic->Void> = "failed";
 	var Paused : QueueEvent<Void->Void> = "paused";
 	var Resumed : QueueEvent<Job<Dynamic>->Void> = "resumed";
-	var Cleaned : QueueEvent<Array<Job<Dynamic>>->JobType> = "cleaned";
+}
+
+@:enum abstract JobEvent<T:haxe.Constraints.Function>(Event<T>) to Event<T> {
+	var Error : JobEvent<Error->Void> = "error";
 }
 
 @:jsRequire("bull")
@@ -92,15 +107,24 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	@:overload(function(concurrency :Int, cb :Job<JobData>->Done1->Void) :Void { })
 	public function process(concurrency :Int, cb :Job<JobData>->Done2<Result>->Void) :Void;
 
+	@:overload(function(queueName :String, data :JobData) :Promise<Job<JobData>> { })
+	@:overload(function(queueName :String, data :JobData, opts :JobOptions) :Promise<Job<JobData>> { })
+	@:overload(function(data :JobData) :Promise<Job<JobData>> { })
 	public function add(data :JobData, opts :JobOptions) :Promise<Job<JobData>>;
 	public function pause(?isLocal :Bool) :Promise<Dynamic>;
 	public function resume(?isLocal :Bool) :Promise<Dynamic>;
 	public function count() :Promise<Int>;
 	public function getJobCounts() :Promise<BullJobCounts>;
+	public function getRepeatableJobs(?start :Float, ?end :Float, ?asc :Bool) :Promise<Array<JobOptionsRepeatOpts>>;
+	@:overload(function(opts :JobOptionsRepeatOpts) :Promise<Void> { })
+	public function removeRepeatable(name :String, opts :JobOptionsRepeatOpts) :Promise<Void>;
 	public function getActive() :Promise<Array<Job<JobData>>>;
 	public function getActiveCount() :Promise<Int>;
+	public function getDelayed() :Promise<Array<Job<JobData>>>;
 	public function getDelayedCount() :Promise<Int>;
+	public function getFailed() :Promise<Array<Job<JobData>>>;
 	public function getFailedCount() :Promise<Int>;
+	public function getCompleted() :Promise<Array<Job<JobData>>>;
 	public function getCompletedCount() :Promise<Int>;
 	public function getWaitingCount() :Promise<Int>;
 	public function getPausedCount() :Promise<Int>;
@@ -108,14 +132,18 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	public function empty() :Promise<String>;
 	public function close() :Promise<Void>;
 	public function getJob(jobId :String) :Promise<Null<Job<JobData>>>;
+	public function getJobs(types: Array<String>, ?start: Float, ?end: Float, ?asc: Bool) :Promise<Array<Job<JobData>>>;
 	public function clean(gracePeriod :Int, ?type :JobType, ?limit :Int) :Promise<Void>;
 }
 
 extern class Job<JobData>
 {
 	public var data :JobData;
+	public function discard() :Promise<Void>;
+	public function finished() :Promise<Void>;
 	public function progress(val :Progress) :Void;
+	public function promote() :Void;
 	public function remove() :Promise<Void>;
 	public function retry() :Promise<Void>;
+	public function update(data :JobData) :Promise<Void>;
 }
-

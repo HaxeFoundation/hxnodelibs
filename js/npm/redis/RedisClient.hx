@@ -45,7 +45,7 @@ extern class RedisClient extends js.node.events.EventEmitter<Dynamic>
   public var connection_options :{host:String, port:Int};
 
   /** Forcibly close the connection to the Redis server. Note that this does not wait until all replies have been parsed. */
-  public function end():Void;
+  public function end(flush :Bool):Void;
   /** Exit cleanly. */
   public function quit():Void;
   public function info(cb:BulkReply):Void;
