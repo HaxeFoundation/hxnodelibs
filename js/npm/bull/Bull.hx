@@ -17,6 +17,8 @@ typedef JobOptionsBackoff = {
 }
 
 typedef JobOptionsRepeatOpts = {
+	/* Not clear if you should pass this in, but getRepeatableJobs returns blobs with and id */
+	@:optional var id :String;
 	@:optional var cron :String;
 	@:optional var tz :String;
 	@:optional var endDate :Dynamic;
