@@ -369,6 +369,8 @@ extern class DockerImage extends js.node.events.EventEmitter<Dynamic>
 extern class DockerContainer extends js.node.events.EventEmitter<Dynamic>
 {
 	public var id :DockerContainerId;
+	public var modem :{demuxStream:Null<IReadable>->IWritable->IWritable->Void};
+
 	@:overload(function(opts :StartContainerOptions, cb :Null<Error>->Null<Dynamic>->Void):Void {})
 	public function start(cb :Null<Error>->Null<Dynamic>->Void) :Void;
 
