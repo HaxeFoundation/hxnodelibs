@@ -1,14 +1,18 @@
 package js.npm.express;
 import js.Error;
 import js.node.http.ServerResponse;
+import js.node.stream.Writable;
 
 /**
  * http://expressjs.com/4x/api.html#res.status
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
-extern  class ExpressResponse
+extern class ExpressResponse
+	extends Writable<ExpressResponse>
 {
-	
+	/** From js.node.http.ServerResponse */
+	var headersSent(default,null):Bool;
+
 	/**
 	 * Response local variables are scoped to the request, thus only available to the view(s) rendered during that request / response cycle, if any. Otherwise this API is identical to app.locals.
 	 * This object is useful for exposing request-level information such as the request pathname, authenticated user, user settings etcetera.
@@ -171,8 +175,5 @@ extern  class ExpressResponse
 
 	/**
 	 */
-	function writeHead(status :Int):Void;
-
-	function end(?data :Dynamic):Void;
-
+	function writeHead(status :Int, ?headers :Dynamic):Void;
 }
