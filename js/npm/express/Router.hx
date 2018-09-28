@@ -7,8 +7,10 @@ import haxe.ds.StringMap;
  * Create a new router by using "express.Router()"
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
+ @:jsRequire("express", "Router")
 extern class Router
 {
+	function new(options:Dynamic):Void;
 	
 	/**
 	 * Use the given middleware function, with optional mount path, defaulting to "/".

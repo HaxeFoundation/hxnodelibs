@@ -2,6 +2,7 @@ package js.npm.express;
 import js.html.audio.DynamicsCompressorNode;
 import js.node.http.IncomingMessage;
 import js.node.http.ServerResponse;
+import haxe.Constraints;
 
 /**
  * Class that describes an Application class settings object.
@@ -63,6 +64,7 @@ extern class ApplicationSettings
  * ...
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
+@:jsRequire("express")
 extern class Application
 {
 
@@ -76,6 +78,8 @@ extern class Application
 	 * Alter how Express will behave.
 	 */
 	var settings : ApplicationSettings;
+
+	function new():Void;
 	
 	/**
 	 * Bind and listen for connections on the given host and port, this method is identical to node's http.Server#listen().
@@ -120,11 +124,9 @@ extern class Application
 	 * Use the given middleware function, with optional mount path, defaulting to "/".
 	 * The "mount" path is stripped and is not visible to the middleware function.
 	 * The main effect of this feature is that mounted middleware may operate without code changes regardless of its "prefix" pathname.
-	 * @param	p_path
-	 * @param	p_function
 	 */
-	@:overload(function(p_function : ExpressRequest -> ExpressResponse -> Dynamic):Void{})
-	function use(p_path:String,p_function : ExpressRequest -> ExpressResponse -> Dynamic):Void;
+	@:overload(function(path:String, callb : Function, callbacks: haxe.extern.Rest<Function>):Void{})
+	function use(callb : Function, callbacks: haxe.extern.Rest<Function>):Void;
 
 	/**
 	 * Register the given template engine callback as ext By default will require() the engine based on the file extension. 
