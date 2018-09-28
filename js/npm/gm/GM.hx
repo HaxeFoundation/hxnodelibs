@@ -279,7 +279,16 @@ extern class GM
 	var normalize                   : Dynamic;
 	var noProfile                   : Dynamic;
 	var opaque                      : Dynamic;
+
+	#if (haxe_ver < 4)
 	var operator                    : Dynamic;
+	#else
+	// operator is now a keyword
+	// https://github.com/HaxeFoundation/haxe/issues/7413
+	@:native("operator")
+	var Operator                    : Dynamic;
+	#end
+
 	var orderedDither               : Dynamic;
 	var outputDirectory             : Dynamic;
 	var paint                       : Dynamic;
