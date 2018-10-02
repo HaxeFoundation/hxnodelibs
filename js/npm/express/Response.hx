@@ -158,13 +158,9 @@ extern  class Response implements Dynamic
 		
 	/**
 	 * Render a view with a callback responding with the rendered string. When an error occurs next(err) is invoked internally. When a callback is provided both the possible error and rendered string are passed, and no automated response is performed.
-	 * @param	p_view
-	 * @param	p_locals
-	 * @param	p_callback
 	 */
-	@:overload(function(p_view:String, p_callback:Dynamic):Void { } )	
-	function render(p_view:String,p_locals:Dynamic,p_callback:Dynamic):Void;
-	
+	function render(view:String, ?locals:Dynamic, ?callback:Function):Void;
+
 	/**
 	 * Sets the response timeout.
 	 */
