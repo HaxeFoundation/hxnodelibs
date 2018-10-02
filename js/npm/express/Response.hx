@@ -3,6 +3,18 @@ import haxe.Constraints;
 import haxe.extern.EitherType;
 import js.Error;
 
+typedef CookieOptions = {
+	@:optional var domain:String;
+	@:optional var encode:Function;
+	@:optional var expires:Dynamic;
+	@:optional var httpOnly:Bool;
+	@:optional var maxAge:Float;
+	@:optional var path:String;
+	@:optional var secure:Bool;
+	@:optional var signed:Bool;
+	@:optional var sameSite:EitherType<Bool, String>;
+};
+
 /**
  * http://expressjs.com/4x/api.html#res.status
  * @author Eduardo Pons - eduardo@thelaborat.org
@@ -44,25 +56,12 @@ extern  class Response implements Dynamic
 	 * The path option defaults to "/".
 	 * The maxAge option is a convenience option for setting "expires" relative to the current time in milliseconds.
 	 */
-	function cookie(name:String, value:String, ?options:{
-		@:optional var domain:String;
-		@:optional var encode:Function;
-		@:optional var expires:Dynamic;
-		@:optional var httpOnly:Bool;
-		@:optional var maxAge:Float;
-		@:optional var path:String;
-		@:optional var secure:Bool;
-		@:optional var signed:Bool;
-		@:optional var sameSite:EitherType<Bool, String>;
-	}):Void;
+	function cookie(name:String, value:String, ?options:CookieOptions):Void;
 	
 	/**
 	 * Clear cookie name. The path option defaults to "/".
-	 * @param	p_name
-	 * @param	p_options
 	 */
-	@:overload(function(p_name:String):Void{})	
-	function clearCookie(p_name:String, p_options:Dynamic):Void;
+	function clearCookie(name:String, ?options:CookieOptions):Void;
 	
 	/**
 	 * Redirect to the given url with optional status code defaulting to 302 "Found".
