@@ -1,6 +1,7 @@
 package js.npm.express;
+import haxe.Constraints;
+import haxe.extern.EitherType;
 import js.Error;
-import js.node.http.ServerResponse;
 
 /**
  * http://expressjs.com/4x/api.html#res.status
@@ -42,12 +43,18 @@ extern  class Response implements Dynamic
 	 * Set cookie name to value, which may be a string or object converted to JSON. 
 	 * The path option defaults to "/".
 	 * The maxAge option is a convenience option for setting "expires" relative to the current time in milliseconds.
-	 * @param	p_name
-	 * @param	p_value
-	 * @param	p_options
 	 */
-	@:overload(function(p_name:String,p_value:String):Void{})
-	function cookie(p_name:String, p_value:String, p_options:Dynamic):Void;
+	function cookie(name:String, value:String, ?options:{
+		@:optional var domain:String;
+		@:optional var encode:Function;
+		@:optional var expires:Dynamic;
+		@:optional var httpOnly:Bool;
+		@:optional var maxAge:Float;
+		@:optional var path:String;
+		@:optional var secure:Bool;
+		@:optional var signed:Bool;
+		@:optional var sameSite:EitherType<Bool, String>;
+	}):Void;
 	
 	/**
 	 * Clear cookie name. The path option defaults to "/".
