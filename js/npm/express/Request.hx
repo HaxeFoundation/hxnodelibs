@@ -4,7 +4,7 @@ package js.npm.express;
  * http://expressjs.com/4x/api.html#req.params
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
-extern class Request
+extern class Request implements Dynamic
 {
 
 	/**

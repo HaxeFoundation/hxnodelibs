@@ -6,7 +6,7 @@ import js.node.http.ServerResponse;
  * http://expressjs.com/4x/api.html#res.status
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
-extern  class Response
+extern  class Response implements Dynamic
 {
 	
 	/**
