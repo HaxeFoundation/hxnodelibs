@@ -36,6 +36,6 @@ extern class Express
 		?lastModified : Bool,
 		?maxAge : Int,
 		?redirect : Bool,
-		?setHeaders : ExpressResponse -> String -> js.node.fs.Stats -> Void
+		?setHeaders : Response -> String -> js.node.fs.Stats -> Void
 	}):haxe.Constraints.Function;
 }
