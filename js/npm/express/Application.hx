@@ -1,5 +1,4 @@
 package js.npm.express;
-import js.html.audio.DynamicsCompressorNode;
 import js.node.http.IncomingMessage;
 import js.node.http.ServerResponse;
 import haxe.Constraints;
