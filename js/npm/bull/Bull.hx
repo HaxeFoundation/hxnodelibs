@@ -71,6 +71,26 @@ typedef BullOptions = {
 typedef Progress=Float;
 typedef JobType=String;
 
+typedef WorkerMetaData = {
+	var id :String;
+	var addr :String;
+	var fd :String;
+	var name :String;
+	var age :String;
+	var idle :String;
+	var flags :String;
+	var db :String;
+	var sub :String;
+	var psub :String;
+	var multi :String;
+	var qbuf :String;
+	var obl :String;
+	var oll :String;
+	var omem :String;
+	var events :String;
+	var cmd :String;
+}
+
 /**
 	Enumeration of events emitted by the `Readable` class.
 **/
@@ -131,6 +151,7 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	public function getWaitingCount() :Promise<Int>;
 	public function getPausedCount() :Promise<Int>;
 	public function getWaiting() :Promise<Int>;
+	public function getWorkers() :Promise<Array<WorkerMetaData>>;
 	public function empty() :Promise<String>;
 	public function close() :Promise<Void>;
 	public function getJob(jobId :String) :Promise<Null<Job<JobData>>>;
