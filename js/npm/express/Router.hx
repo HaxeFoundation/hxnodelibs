@@ -10,7 +10,7 @@ import haxe.ds.StringMap;
  @:jsRequire("express", "Router")
 extern class Router
 {
-	function new(options:Dynamic):Void;
+	function new(?options:Dynamic):Void;
 	
 	/**
 	 * Use the given middleware function, with optional mount path, defaulting to "/".

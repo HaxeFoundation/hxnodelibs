@@ -124,8 +124,8 @@ extern class Application
 	 * The "mount" path is stripped and is not visible to the middleware function.
 	 * The main effect of this feature is that mounted middleware may operate without code changes regardless of its "prefix" pathname.
 	 */
-	@:overload(function(path:String, callb : Function, callbacks: haxe.extern.Rest<Function>):Void{})
-	function use(callb : Function, callbacks: haxe.extern.Rest<Function>):Void;
+	@:overload(function(path:String, callb : Dynamic, callbacks: haxe.extern.Rest<Function>):Void{})
+	function use(callb : Dynamic, callbacks: haxe.extern.Rest<Function>):Void;
 
 	/**
 	 * Register the given template engine callback as ext By default will require() the engine based on the file extension. 
