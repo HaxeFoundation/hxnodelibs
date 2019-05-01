@@ -43,6 +43,7 @@ extern class FetchResponse
 	public function json() :Promise<Dynamic>;
 	public function text() :Promise<String>;
 #if nodejs
+	public function buffer() :Promise<js.node.Buffer>;
 	public var body :js.node.stream.Readable.IReadable;
 #else
 	public var bodyUsed :Bool;
