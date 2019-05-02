@@ -172,7 +172,7 @@ extern class Application
 	 * @return
 	 */
 	@:overload(function(p_name:String):String {})
-	
+
 	/**	 
 	* The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs, such as app.post(). 
 	* Multiple callbacks may be given, all are treated equally, and behave just like middleware, with the one exception that these callbacks may invoke next('route') 
@@ -186,7 +186,35 @@ extern class Application
 	 */	
 	@:overload(function(p_exp : EReg, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
 	function get(p_path:String, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
-	
+
+	/**	 
+	* The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs, such as app.post(). 
+	* Multiple callbacks may be given, all are treated equally, and behave just like middleware, with the one exception that these callbacks may invoke next('route') 
+	* to bypass the remaining route callback(s). This mechanism can be used to perform pre-conditions on a route then pass control to subsequent routes when there is 
+	* no reason to proceed with the route matched.
+	 * @param	p_path
+	 * @param	p_cb0
+	 * @param	p_cb1
+	 * @param	p_cb2
+	 * @param	p_cb3
+	 */	
+	@:overload(function(p_exp : EReg, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
+	function put(p_path:String, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+
+	/**	 
+	* The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs, such as app.post(). 
+	* Multiple callbacks may be given, all are treated equally, and behave just like middleware, with the one exception that these callbacks may invoke next('route') 
+	* to bypass the remaining route callback(s). This mechanism can be used to perform pre-conditions on a route then pass control to subsequent routes when there is 
+	* no reason to proceed with the route matched.
+	 * @param	p_path
+	 * @param	p_cb0
+	 * @param	p_cb1
+	 * @param	p_cb2
+	 * @param	p_cb3
+	 */	
+	@:overload(function(p_exp : EReg, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
+	function delete(p_path:String, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+
 	/**
 	 * This method functions just like the app.VERB() methods, however it matches all HTTP verbs.
 	 * This method is extremely useful for mapping "global" logic for specific path prefixes or arbitrary matches. 
