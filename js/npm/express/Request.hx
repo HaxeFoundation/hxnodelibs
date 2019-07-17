@@ -1,5 +1,7 @@
 package js.npm.express;
 
+import haxe.extern.*;
+
 /**
  * http://expressjs.com/4x/api.html#req.params
  * @author Eduardo Pons - eduardo@thelaborat.org
@@ -111,22 +113,23 @@ extern class Request implements Dynamic
 	 * When a list or array is given the best match, if any is returned.
 	 * @param	p_method
 	 */
-	@:overload(function(p_methods:Array<String>):String{})
-	function accepts(p_method:String):String;
+	@:overload(function(p_methods:Array<String>):EitherType<String, Bool>{})
+	function accepts(p_method:String):EitherType<String, Bool>;
 		
 	/**
-	 * Check if the given charset are acceptable.
-	 * Please refer to accepts for additional documentation or any issues and concerns.
-	 * @param	p_charset
+	 * Returns the first accepted charset of the specified character sets, based on the request’s Accept-Charset HTTP header field. If none of the specified charsets is accepted, returns false.
 	 */
-	function acceptsCharset(p_charset:String):Bool;
+	function acceptsCharsets(charset:String, charsets:Rest<String>):EitherType<String, Bool>;
 	
 	/**
-	 * Check if the given lang are acceptable.
-	 * Please refer to accepts for additional documentation or any issues and concerns.
-	 * @param	p_lang
+	 * Returns the first accepted encoding of the specified encodings, based on the request’s Accept-Encoding HTTP header field. If none of the specified encodings is accepted, returns false.
 	 */
-	function acceptsLanguage(p_lang:String):Bool;
+	function acceptsEncodings(encoding:String, encodings:Rest<String>):EitherType<String, Bool>;
+	
+	/**
+	 * Returns the first accepted language of the specified languages, based on the request’s Accept-Language HTTP header field. If none of the specified languages is accepted, returns false.
+	 */
+	function acceptsLanguages(lang:String, langs:Rest<String>):EitherType<String, Bool>;
 	
 	/**
 	 * Check if the incoming request contains the "Content-Type" header field, and it matches the give mime type.
