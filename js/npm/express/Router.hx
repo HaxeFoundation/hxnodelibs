@@ -19,7 +19,7 @@ extern class Router
 	 * @param	p_function
 	 */
 	@:overload(function(p_function:Dynamic):Void{})
-	function use(p_path:String, p_function:Dynamic):Void;
+	function use(p_path:Path, p_function:Dynamic):Void;
 	
 	
 	/**
@@ -38,7 +38,7 @@ extern class Router
 	 * Building on the router.param() example from before, we see how router.route() allows us to easily specify the various HTTP verb handlers.
 	 * @param	p_path
 	 */
-	function route(p_path:String):Void;
+	function route(p_path:Path):Dynamic;
 	
 	
 	/**	 
@@ -52,8 +52,7 @@ extern class Router
 	 * @param	p_cb2
 	 * @param	p_cb3
 	 */	
-	@:overload(function(p_exp : EReg, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
-	function get(p_path:String, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+	function get(p_path:Path, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
 	
 	/**	 
 	* The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs, such as app.post(). 
@@ -66,8 +65,7 @@ extern class Router
 	 * @param	p_cb2
 	 * @param	p_cb3
 	 */
-	@:overload(function(p_exp : EReg, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
-	function post(p_path:String, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+	function post(p_path:Path, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
 
 	/**	 
 	* The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs, such as app.post(). 
@@ -80,8 +78,7 @@ extern class Router
 	 * @param	p_cb2
 	 * @param	p_cb3
 	 */
-	@:overload(function(p_exp : EReg, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
-	function put(p_path:String, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+	function put(p_path:Path, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
 
 	/**	 
 	* The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs, such as app.post(). 
@@ -94,7 +91,6 @@ extern class Router
 	 * @param	p_cb2
 	 * @param	p_cb3
 	 */
-	@:overload(function(p_exp : EReg, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
-	function delete(p_path:String, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+	function delete(p_path:Path, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
 
 }

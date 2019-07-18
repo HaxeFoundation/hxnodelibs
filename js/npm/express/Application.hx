@@ -124,7 +124,7 @@ extern class Application
 	 * The "mount" path is stripped and is not visible to the middleware function.
 	 * The main effect of this feature is that mounted middleware may operate without code changes regardless of its "prefix" pathname.
 	 */
-	@:overload(function(path:String, callb : Dynamic, callbacks: haxe.extern.Rest<Function>):Void{})
+	@:overload(function(path:Path, callb : Dynamic, callbacks: haxe.extern.Rest<Function>):Void{})
 	function use(callb : Dynamic, callbacks: haxe.extern.Rest<Function>):Void;
 
 	/**
@@ -162,8 +162,7 @@ extern class Application
 	 * @param	p_cb2
 	 * @param	p_cb3
 	 */
-	@:overload(function(p_exp : EReg, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
-	function post(p_path:String, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+	function post(p_path:Path, ?p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
 	
 	
 	/**
@@ -184,8 +183,7 @@ extern class Application
 	 * @param	p_cb2
 	 * @param	p_cb3
 	 */	
-	@:overload(function(p_exp : EReg, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
-	function get(p_path:String, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+	function get(p_path:Path, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
 
 	/**	 
 	* The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs, such as app.post(). 
@@ -198,8 +196,7 @@ extern class Application
 	 * @param	p_cb2
 	 * @param	p_cb3
 	 */	
-	@:overload(function(p_exp : EReg, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
-	function put(p_path:String, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+	function put(p_path:Path, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
 
 	/**	 
 	* The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs, such as app.post(). 
@@ -212,8 +209,7 @@ extern class Application
 	 * @param	p_cb2
 	 * @param	p_cb3
 	 */	
-	@:overload(function(p_exp : EReg, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})
-	function delete(p_path:String, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+	function delete(p_path:Path, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
 
 	/**
 	 * This method functions just like the app.VERB() methods, however it matches all HTTP verbs.
@@ -227,14 +223,13 @@ extern class Application
 	 * @param	p_cb2
 	 * @param	p_cb3
 	 */
-	@:overload(function(p_exp : EReg, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void {})	
-	function all(p_path:String, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
+	function all(p_path:Path, p_cb0 : Dynamic, ?p_cb1 : Dynamic, ?p_cb2 : Dynamic, ?p_cb3 : Dynamic):Void;
 	
 	/**
 	 * Returns an instance of a single route which can then be used to handle HTTP verbs with optional middleware. Using app.route() is a recommended approach to avoiding duplicate route naming and thus typo errors.
 	 * @param	p_path
 	 */
-	function route(p_path:String):Void;
+	function route(p_path:Path):Dynamic;
 	
 	/**
 	 * Render a view with a callback responding with the rendered string. This is the app-level variant of res.render(), and otherwise behaves the same way.
