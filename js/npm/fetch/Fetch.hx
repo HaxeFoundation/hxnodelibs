@@ -2,7 +2,11 @@ package js.npm.fetch;
 
 import haxe.extern.EitherType;
 
+#if (haxe_ver >= 4)
+import js.lib.Promise;
+#else
 import js.Promise;
+#end
 
 @:enum
 abstract RedirectOption(String) {

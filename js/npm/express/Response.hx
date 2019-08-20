@@ -1,7 +1,11 @@
 package js.npm.express;
 import haxe.Constraints;
 import haxe.extern.EitherType;
+#if (haxe_ver >= 4)
+import js.lib.Error;
+#else
 import js.Error;
+#end
 
 typedef CookieOptions = {
 	@:optional var domain:String;
