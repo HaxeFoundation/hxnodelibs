@@ -164,21 +164,4 @@ extern class Response extends js.node.http.ServerResponse implements Dynamic
 	 * Render a view with a callback responding with the rendered string. When an error occurs next(err) is invoked internally. When a callback is provided both the possible error and rendered string are passed, and no automated response is performed.
 	 */
 	function render(view:String, ?locals:Dynamic, ?callback:Function):Void;
-
-	/**
-	 * Sets the response timeout.
-	 */
-	function setTimeout(milliseconds :Float):Void;
-
-	/**
-	 * Sets or appends the response header
-	 */
-	function setHeader(key :String, val :String):Void;
-
-	/**
-	 */
-	function writeHead(status :Int):Void;
-
-	function end(?data :Dynamic):Void;
-
 }
