@@ -23,7 +23,7 @@ typedef CookieOptions = {
  * http://expressjs.com/4x/api.html#res.status
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
-extern  class Response implements Dynamic
+extern class Response extends js.node.http.ServerResponse implements Dynamic
 {
 	
 	/**

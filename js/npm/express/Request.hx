@@ -6,7 +6,7 @@ import haxe.extern.*;
  * http://expressjs.com/4x/api.html#req.params
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
-extern class Request implements Dynamic
+extern class Request extends js.node.http.IncomingMessage implements Dynamic
 {
 
 	/**
