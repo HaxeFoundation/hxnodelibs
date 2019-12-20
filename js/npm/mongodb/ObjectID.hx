@@ -1,5 +1,4 @@
 package js.npm.mongodb;
-import js.npm.mongodb.ObjectID.ObjectIDInternal;
 
 /**
  * Native ObjectID instance.
