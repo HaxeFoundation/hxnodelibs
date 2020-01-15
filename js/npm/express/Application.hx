@@ -93,7 +93,7 @@ extern class Application
 	 * @param	p_name
 	 * @param	p_value
 	 */
-	function set(p_name:String, p_value:String):Void;
+	function set(p_name:String, p_value:Dynamic):Void;
 	
 	/**
 	 * Set setting name to true.
