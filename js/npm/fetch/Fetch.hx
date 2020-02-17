@@ -44,6 +44,13 @@ extern class Fetch
 
 extern class FetchResponse
 {
+	var type(default,null) : String;
+	var url(default,null) : String;
+	var redirected(default,null) : Bool;
+	var status(default,null) : Int;
+	var ok(default,null) : Bool;
+	var statusText(default,null) : String;
+
 	public function json() :Promise<Dynamic>;
 	public function text() :Promise<String>;
 #if nodejs
