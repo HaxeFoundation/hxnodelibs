@@ -16,7 +16,7 @@ import js.npm.mongodb.MongoOption.MongoUserOption;
  * @author Eduardo Pons - eduardo@thelaborat.org
  */
 @:native("require('mongodb').Db")
-extern class MongoDatabase implements Dynamic<Dynamic>
+extern class MongoDatabase
 //extends EventEmitter
 {
 	/**
