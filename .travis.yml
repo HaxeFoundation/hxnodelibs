@@ -4,8 +4,5 @@ haxe:
   - 4.0.5
   - 3.4.7
 
-install:
-  - haxelib install all --always
-
 script:
   - haxe build.hxml

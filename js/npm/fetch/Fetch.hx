@@ -59,7 +59,7 @@ extern class FetchResponse
 #else
 	public var bodyUsed :Bool;
 	public function blob() :Promise<js.html.Blob>;
-	public function arrayBuffer() :Promise<js.html.ArrayBuffer>;
+	public function arrayBuffer() :Promise<js.lib.ArrayBuffer>;
 	public function formData() :Promise<js.html.FormData>;
 #end
 }
