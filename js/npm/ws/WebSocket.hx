@@ -1,5 +1,5 @@
 package js.npm.ws;
-import js.Error;
+import js.lib.Error;
 import js.node.events.EventEmitter;
 import js.node.http.IncomingMessage;
 

@@ -1,6 +1,6 @@
 package js.npm.pem;
 
-import js.Error;
+import js.lib.Error;
 
 typedef PemCreateCertificationOptions = {
 	@:optional var serviceKey :String;

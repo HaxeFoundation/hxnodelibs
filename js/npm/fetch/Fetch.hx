@@ -5,7 +5,7 @@ import haxe.extern.EitherType;
 #if (haxe_ver >= 4)
 import js.lib.Promise;
 #else
-import js.Promise;
+import js.lib.Promise;
 #end
 
 @:enum

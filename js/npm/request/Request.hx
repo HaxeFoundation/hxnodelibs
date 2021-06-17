@@ -7,7 +7,7 @@ import js.node.stream.Writable;
 #if (haxe_ver >= 4)
 import js.lib.Error;
 #else
-import js.Error;
+import js.lib.Error;
 #end
 
 typedef HttpResponse = {

@@ -1,6 +1,6 @@
 package js.npm;
 
-import js.Error;
+import js.lib.Error;
 
 typedef Callback0 = Null<Error> -> Void;
 

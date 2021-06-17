@@ -2,7 +2,7 @@ package js.npm.redis;
 
 import js.Node;
 import js.node.events.EventEmitter;
-import js.Error;
+import js.lib.Error;
 
 typedef Channel = String;
 typedef ChannelCount = Int;
