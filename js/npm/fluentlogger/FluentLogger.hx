@@ -5,7 +5,7 @@ package js.npm.fluentlogger;
  */
 
 import js.Node;
-import js.Error;
+import js.lib.Error;
 import haxe.extern.EitherType;
 
 typedef FluentConfigureOpts = {

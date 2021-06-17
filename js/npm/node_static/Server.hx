@@ -1,6 +1,7 @@
 package js.npm.node_static;
 import js.node.http.IncomingMessage;
 import js.node.http.ServerResponse;
+import js.lib.Error;
 
 /**
  * Creation options for node-static server

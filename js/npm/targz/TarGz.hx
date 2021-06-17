@@ -4,7 +4,7 @@ package js.npm.targz;
  * https://github.com/alanhoff/node-tar.gz
  */
 
-import js.Error;
+import js.lib.Error;
 import js.node.stream.Readable;
 import js.node.stream.Writable;
 
@@ -26,6 +26,6 @@ extern class TarGz extends js.node.events.EventEmitter<Dynamic>
 	public function createReadStream(directory :String) :IReadable;
 	public function createWriteStream(directory :String) :IWritable;
 	public function createParseStream() :IWritable;
-	public function compress(sourceDir :String, targetFilePath :String, ?cb :Null<Error>->Void) :js.Promise<IReadable>;
-	public function extract(sourceFilePath :String, targetDir :String,  ?cb :Null<Error>->Void) :js.Promise<IReadable>;
+	public function compress(sourceDir :String, targetFilePath :String, ?cb :Null<Error>->Void) :js.lib.Promise<IReadable>;
+	public function extract(sourceFilePath :String, targetDir :String,  ?cb :Null<Error>->Void) :js.lib.Promise<IReadable>;
 }

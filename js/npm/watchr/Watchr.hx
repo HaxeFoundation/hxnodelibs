@@ -2,7 +2,7 @@ package js.npm.watchr;
 
 //https://github.com/bevry/watchr
 
-import js.Error;
+import js.lib.Error;
 
 typedef WatchErr=Dynamic;
 

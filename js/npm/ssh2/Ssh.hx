@@ -1,6 +1,6 @@
 package js.npm.ssh2;
 
-import js.Error;
+import js.lib.Error;
 import js.node.events.EventEmitter.Event;
 import js.node.stream.Readable;
 import js.node.stream.Writable;

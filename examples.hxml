@@ -1,0 +1,10 @@
+-js no-output
+-lib tink_await
+-lib hxnodejs
+-lib react
+--no-output
+--each
+--next
+--macro ImportAll.run("js")
+--next
+--macro BuildExamples.run()

@@ -6,7 +6,7 @@ import js.node.http.*;
 import js.node.stream.Readable;
 import js.node.stream.Writable;
 import js.node.events.EventEmitter;
-import js.Error;
+import js.lib.Error;
 
 typedef FieldName=String;
 typedef FileName=String;

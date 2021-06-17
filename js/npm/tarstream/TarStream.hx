@@ -6,7 +6,7 @@ package js.npm.tarstream;
 
 import haxe.extern.EitherType;
 
-import js.Error;
+import js.lib.Error;
 import js.node.Buffer;
 import js.node.events.EventEmitter.Event;
 import js.node.stream.Readable;

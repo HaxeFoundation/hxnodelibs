@@ -1,6 +1,6 @@
 package js.npm.pageres;
 
-import js.Promise;
+import js.lib.Promise;
 import js.node.stream.Readable;
 
 typedef PageresOpts = {

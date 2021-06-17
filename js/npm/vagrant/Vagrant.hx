@@ -1,6 +1,6 @@
 package js.npm.vagrant;
 
-import js.Error;
+import js.lib.Error;
 
 @:enum
 abstract VagrantMachineStatus(String) {

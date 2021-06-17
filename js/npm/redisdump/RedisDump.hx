@@ -5,5 +5,5 @@ package js.npm.redisdump;
 extern class RedisDump
 {
 	@:selfCall
-	public static function dump(query :Dynamic, cb :js.Error->Dynamic->Void) :Void;
+	public static function dump(query :Dynamic, cb :js.lib.Error->Dynamic->Void) :Void;
 }

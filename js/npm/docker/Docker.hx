@@ -3,7 +3,7 @@ package js.npm.docker;
 import js.node.events.EventEmitter;
 import js.node.stream.Readable;
 import js.node.stream.Writable;
-import js.Error;
+import js.lib.Error;
 
 /**
  * https://www.npmjs.com/package/dockerode#readme

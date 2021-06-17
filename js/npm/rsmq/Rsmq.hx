@@ -4,7 +4,7 @@ package js.npm.rsmq;
 
 import js.npm.redis.RedisClient;
 
-import js.Error;
+import js.lib.Error;
 
 typedef RsmqConstructorOptions = {
 	@:optional var host :String;

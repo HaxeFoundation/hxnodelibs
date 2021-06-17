@@ -52,7 +52,7 @@ extern class MongoCursor
 	var stream              : Dynamic;
 	var close               : Dynamic;
 	var isClosed            : Dynamic;
-	
+
 	/**
 	End of stream is signaled by a null passed in item
 	*/

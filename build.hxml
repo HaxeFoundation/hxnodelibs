@@ -1,9 +1,6 @@
--js no-output
--lib hxnodejs
--lib react
---no-output
---each
---next
---macro ImportAll.run("js")
---next
---macro BuildExamples.run()
+#-cmd haxelib install all --always
+-cmd haxelib --always install hxnodejs 12.1.0
+-cmd haxelib --always install react
+-cmd haxelib --always git tink_await https://github.com/haxetink/tink_await
+-cmd npm install mongodb@2.2.36
+-cmd haxe examples.hxml

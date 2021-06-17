@@ -3,7 +3,7 @@ package js.npm.pkgcloud;
 import haxe.extern.EitherType;
 
 import js.Node;
-import js.Error;
+import js.lib.Error;
 import js.node.stream.Writable;
 import js.node.stream.Readable;
 
