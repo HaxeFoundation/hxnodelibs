@@ -39,7 +39,7 @@ extern class Bluebird<T, T2>
 	// Error handling
 	@:overload(function<T5>(error : T5 -> Void) : Bluebird<T, T2> {})
 	public function caught<T5>(cls : Class<T5>, error : T5 -> Void) : Bluebird<T, T2>;
-	public function error<T5 : js.Error>(rejectedHandler : T5 -> Void) : Bluebird<T, T2>;
+	public function error<T5 : js.lib.Error>(rejectedHandler : T5 -> Void) : Bluebird<T, T2>;
 	public function lastly<T3>(fulfilledHandler : T -> T3) : Bluebird<T3, T2>;
 
 	// Status

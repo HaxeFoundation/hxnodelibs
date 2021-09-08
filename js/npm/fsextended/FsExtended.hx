@@ -7,7 +7,7 @@ import js.node.stream.Readable;
 import js.node.stream.Writable;
 import js.Node;
 import haxe.extern.EitherType;
-import js.Error;
+import js.lib.Error;
 
 typedef Callback0 = Null<Error> -> Void;
 

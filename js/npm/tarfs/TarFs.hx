@@ -4,7 +4,7 @@ package js.npm.tarfs;
  * https://github.com/mafintosh/tar-fs
  */
 
-import js.Error;
+import js.lib.Error;
 import js.node.stream.Readable;
 import js.node.stream.Writable;
 

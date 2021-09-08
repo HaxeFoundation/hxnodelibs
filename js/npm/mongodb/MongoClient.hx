@@ -1,5 +1,5 @@
 package js.npm.mongodb;
-import js.Error;
+import js.lib.Error;
 import js.node.events.EventEmitter;
 import js.Node;
 import js.html.Float32Array;

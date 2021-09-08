@@ -1,6 +1,6 @@
 package js.npm.md5file;
 
-import js.Promise;
+import js.lib.Promise;
 
 @:jsRequire("md5-file/promise")
 extern class Md5FilePromise

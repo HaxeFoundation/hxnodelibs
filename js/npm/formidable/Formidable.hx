@@ -4,7 +4,7 @@ package js.npm.formidable;
  */
 import js.node.http.*;
 import js.node.events.EventEmitter;
-import js.Error;
+import js.lib.Error;
 
 typedef Fields=Array<String>;
 

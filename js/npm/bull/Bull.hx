@@ -1,7 +1,7 @@
 package js.npm.bull;
 
-import js.Error;
-import js.Promise;
+import js.lib.Error;
+import js.lib.Promise;
 import js.node.events.EventEmitter;
 import js.node.events.EventEmitter.Event;
 import js.npm.redis.RedisClient;

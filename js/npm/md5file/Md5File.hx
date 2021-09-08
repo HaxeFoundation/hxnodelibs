@@ -1,6 +1,6 @@
 package js.npm.md5file;
 
-import js.Error;
+import js.lib.Error;
 
 @:jsRequire("md5-file")
 extern class Md5File

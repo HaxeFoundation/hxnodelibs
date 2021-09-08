@@ -4,6 +4,7 @@ import js.node.events.EventEmitter;
 import js.node.http.Server;
 import js.node.http.IncomingMessage;
 import js.node.net.Socket;
+import js.lib.Error;
 
 @:enum abstract WebSocketServerEvent<T:haxe.Constraints.Function>(Event<T>) to Event<T> 
 {
