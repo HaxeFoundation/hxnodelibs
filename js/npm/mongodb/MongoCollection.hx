@@ -55,7 +55,9 @@ extern class MongoCollection
 	var initializeUnorderedBulkOp   : Dynamic;
 	var initializeOrderedBulkOp     : Dynamic;
 	var parallelCollectionScan      : Dynamic;
-	var insertOne			: Dynamic;
-	var updateOne			: Dynamic;
+	var insertOne					: Dynamic;
+	var updateOne					: Dynamic;
+	var deleteOne					: Dynamic;
+	var deleteMany					: Dynamic;
 
 }
