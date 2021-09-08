@@ -28,7 +28,7 @@ extern class MongoCollection
 	var remove                      : Dynamic;
 	var rename                      : Dynamic;
 	var save                        : Dynamic;
-	var update                      : Dynamic;
+	var updateMany                  : Dynamic;
 	var distinct                    : Dynamic;
 	var count                       : Dynamic;
 	var drop                        : Dynamic;
@@ -57,5 +57,5 @@ extern class MongoCollection
 	var parallelCollectionScan      : Dynamic;
 	var insertOne			: Dynamic;
 	var updateOne			: Dynamic;
-	
+
 }
